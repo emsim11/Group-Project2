@@ -267,6 +267,7 @@ document.addEventListener('DOMContentLoaded', function () {
     startWorkoutButton.addEventListener('click', function () {
         mainContent.style.display = 'none';
         workoutPlanner.style.display = 'block';
+        setInterval(setTime, 1000);
     });
 });
 
@@ -316,7 +317,7 @@ workoutChoicesCategories.forEach(item => { // Add Click Event Listener to Each L
 var minutesLabel = document.getElementById("minutes")
 var secondsLabel = document.getElementById("seconds")
 var totalSeconds = 0;
-setInterval(setTime, 1000);
+//setInterval(setTime, 1000);
 
 function setTime() {
     ++totalSeconds
