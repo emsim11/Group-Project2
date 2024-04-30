@@ -19,7 +19,20 @@
         <!-- Welcome Back Message -->
         <container id="Welcome" style="display: none;">
             <p>Welcome back to your fitness tracker!</p>
+        </container>
+    </header>
 
+    <!-- User's Specific Workout Page -->
+    <div id="Workout-Page" style="display: none;">
+        <!-- Quotable API Random Quote -->
+        <p id="Quote"></p>
+        <hr>
+        <main id="mainContent">
+            <!-- Date Container -->
+            <div class="Date">
+                <p class="Date"><strong>Today's Date:</strong></p>
+                <p id="currentDate"></p>
+            </div>
             <nav>
         <!-- Conditionally render login or logout links -->
             {{#if logged_in}}
@@ -37,12 +50,11 @@
         </container>
     </header>
 
-</body>
 
         <!-- Page Footer -->
         <footer>
             <p id="Footer-Paragraph">Made with ♡ by Paul Ruszkay, Emily Simone, and Tania Bezerra</p>
-            <p>&copy; 2024 Paul Ruszkay, Emily Simone, Andrew Zubac, and Tania Bezerra</p>
+            <p>&copy; 2024 Paul Ruszkay, Emily Simone, Tania Bezerra, and Andrew Zubac</p>
         </footer>
 
 

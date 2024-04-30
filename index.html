@@ -44,7 +44,7 @@
 
 
 
-
+<!-- Added below to main.handlebars -->
     <!-- User's Specific Workout Page -->
     <div id="Workout-Page" style="display: none;">
         <!-- Quotable API Random Quote -->
@@ -56,6 +56,10 @@
                 <p class="Date"><strong>Today's Date:</strong></p>
                 <p id="currentDate"></p>
             </div>
+<!-- Added above to main.handlebars -->
+
+
+            <!-- below is in workout handlebars -->
             <!-- Form & Calendar Content Container (Date, Form, Calendar) -->
             <div class="Display-Container">
                 <!-- Form Container -->
@@ -85,6 +89,10 @@
                         <button id="startWorkout">Begin Workout</button>
                     </div>
                 </div>
+<!-- above is in calendar handlebars -->
+
+                
+<!-- below is in calendar handlebars -->
                 <!-- Calendar Container -->
                 <div class="cal-container">
                     <div id="calendarBox">
@@ -110,10 +118,16 @@
                                 <!-- Your calendar dates will go here -->
                             </ul>
                         </div>
+<!-- above is in calendar handlebars -->
+
+
+
                     </div>
                 </div>
             </div>
         </main>
+
+  <!-- added below to workoutPlanner handlebars -->      
         <!-- Workout Planner Display -->
         <div id="workoutPlanner" style="display: none;">
             <!-- Update Based On User's Workout Choice Selection -->
@@ -129,6 +143,7 @@
             </ul>
             <button onclick="history.go(0);" id="returnToWorkoutTracker">Return Home</button>
         </div>
+     <!-- added above  to workoutPlanner handlebars -->  
 
 
 
