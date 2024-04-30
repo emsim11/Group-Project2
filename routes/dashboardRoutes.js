@@ -27,7 +27,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
       });
 
 
-
+// 
 // Dashboard route to handle logout
   router.post('/logout', withAuth, (req, res) => {
     req.session.destroy(() => {
