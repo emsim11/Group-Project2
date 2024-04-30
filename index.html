@@ -21,7 +21,12 @@
             <p>Welcome back to your fitness tracker!</p>
         </container>
     </header>
-    <!-- Landing Page to Enter User's First Name -->
+    <!-- Added above to main.handlebars -->
+
+
+
+<!-- Below added to login handlebars-->
+    <!-- Login Page to Enter User's First Name -->
     <div class="User-Input">
         <br>
         <form id="userInput">
@@ -35,6 +40,11 @@
             </div>
         </form>
     </div>
+<!-- Above added to login handlebars-->
+
+
+
+<!-- Added below to main.handlebars -->
     <!-- User's Specific Workout Page -->
     <div id="Workout-Page" style="display: none;">
         <!-- Quotable API Random Quote -->
@@ -46,6 +56,10 @@
                 <p class="Date"><strong>Today's Date:</strong></p>
                 <p id="currentDate"></p>
             </div>
+<!-- Added above to main.handlebars -->
+
+
+            <!-- below is in workout handlebars -->
             <!-- Form & Calendar Content Container (Date, Form, Calendar) -->
             <div class="Display-Container">
                 <!-- Form Container -->
@@ -75,6 +89,10 @@
                         <button id="startWorkout">Begin Workout</button>
                     </div>
                 </div>
+<!-- above is in calendar handlebars -->
+
+                
+<!-- below is in calendar handlebars -->
                 <!-- Calendar Container -->
                 <div class="cal-container">
                     <div id="calendarBox">
@@ -100,10 +118,16 @@
                                 <!-- Your calendar dates will go here -->
                             </ul>
                         </div>
+<!-- above is in calendar handlebars -->
+
+
+
                     </div>
                 </div>
             </div>
         </main>
+
+  <!-- added below to workoutPlanner handlebars -->      
         <!-- Workout Planner Display -->
         <div id="workoutPlanner" style="display: none;">
             <!-- Update Based On User's Workout Choice Selection -->
@@ -119,6 +143,13 @@
             </ul>
             <button onclick="history.go(0);" id="returnToWorkoutTracker">Return Home</button>
         </div>
+     <!-- added above  to workoutPlanner handlebars -->  
+
+
+
+
+
+        <!-- Added below to main.handlebars - completed -->
         <!-- Page Footer -->
         <footer>
             <p id="Footer-Paragraph">Made with ♡ by Paul Ruszkay, Emily Simone, and Tania Bezerra</p>
@@ -139,4 +170,4 @@
     <script src="assets/scripts/script.js"></script>
 </body>
 
-</html>
+</html> 
