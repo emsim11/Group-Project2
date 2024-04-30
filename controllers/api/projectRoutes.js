@@ -1,11 +1,10 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
+const Workout = require('../../models/Project');
+const withAuth = require('../../utils/auth');
 
-// Import the Workout model
-const Workout = require('../models/Workout');
+// API CONTROLLER:
 
-
-// Get all workouts
+// GET ROUTE to Retrieve List of Exercises as JSON
 router.get('/', async (req, res) => {
   try {
     const workouts = await Workout.find();
@@ -15,6 +14,20 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET ROUTE to Retrieve List of Workout Categories as JSON
+
+// GET ROUTE to Retrieve List of Muscle Groups as JSON
+
+// GET ROUTE to Retrieve List of Equipments as JSON
+
+// GET ROUTE to Retrieve List of Reps Units as JSON
+
+// GET ROUTE to Retrieve List of Weights Units as JSON
+
+
+
+// GET ROUTE to Retrieve List of Past Workouts as JSON
+
 
 // Get a workout by id
 router.get('/:id', getWorkout, (req, res) => {
@@ -22,7 +35,7 @@ router.get('/:id', getWorkout, (req, res) => {
 });
 
 
-// Create a new workout
+// POST Route to Create a New Workout
 router.post('/', async (req, res) => {
   const workout = new Workout({
     name: req.body.name,

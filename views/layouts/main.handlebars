@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Workout Tracker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Workout Tracker</h1>
+        <nav>
+            <!-- Home Link to Homepage.handlebars (Home Icon) -->
+            
+            <!-- Calendar Link to Calendar.handlebars (Calendar Icon) -->
+            <a href="/calendar">Calendar</a>
+            <button></button>
+            <!-- Workout Link to Workout.handlebars (Dumbbell Icon) -->
+            <a href="/workoutPage">Workout Page</a>
+            <!-- Workout Planner Link to workoutPlanner.handlebars (Stopwatch Icon) -->
+
+            <!-- Conditionally Render Login or Logout Links -->
+            {{#if logged_in}}
+            <!-- Profile Link to Profile.handlebars (User Icon) -->
+            <a href="/profile">Profile</a> |
+            <button class="no-button" id="logout">Logout</button>
+            <button></button>
+            <!-- If User Isn't Logged in, Show Login and Sign Up Links -->
+            {{else}}
+            <a href="/login">Login</a>
+            {{/if}}
+        </nav>
+    </header>
+
+    <main>
+        <!-- Render the Sub Layout -->
+        {{{ body }}}
+    </main>
+
+    <footer>
+        <p id="Footer-Paragraph">Made with ♡ by Paul Ruszkay, Emily Simone, Tania Bezerra, and Andrew Zubac</p>
+        <p>&copy; 2024 Paul Ruszkay, Emily Simone, Tania Bezerra, and Andrew Zubac</p>
+    </footer>
+
+
+    <!-- jQuery Script Files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Day.js Script File -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js" integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+    <!-- Bootstrap JavaScript File -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <!-- Render Script For Logged In Users Only -->
+    {{#if logged_in}}
+    <script src="../../public/js/logout.js"></script>
+    {{/if}}
+</body>
+
+</html>

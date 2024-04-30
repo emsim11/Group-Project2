@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-6">
+        <h2>Login</h2>
+        
+        <form class="Form Login-Form">
+            <div class="Form-Group">
+                <label for="Email-Login">Email:</label>
+                <input class="Form-Input" type="text" id="Email-Login">
+            </div>
+            <div class="Form-Group">
+                <label for="Password-Login">Password:</label>
+                <input class="Form-Input" type="password" id="Password-Login">
+            </div>
+            <div class="Form-Group">
+                <button class="btn btn-primary" type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <h2>Signup</h2>
+
+        <form class="Form Signup-Form">
+            <div class="Form-Group">
+                <label for="Name-Signup">Name:</label>
+                <input class="Form-Input" type="text" id="Name-Signup">
+            </div>
+            <div class="Form-Group">
+                <label for="Email-Signup">Email:</label>
+                <input class="Form-Input" type="text" id="Email-Signup">
+            </div>
+            <div class="Form-Group">
+                <label for="Password-Signup">Password:</label>
+                <input class="Form-Input" type="password" id="Password-Signup">
+            </div>
+            <div class="Form-Group">
+                <button class="btn btn-primary" type="submit">Signup</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="User-Input">
+        <br>
+        <form id="userInput">
+            <label for="User-Name">Please enter your first name to continue:</label>
+            <br>
+            <input type="text" id="User-Name" name="User-Name" placeholder="First Name">
+            <div class="Submit-Button">
+                <button type="submit" form="userInput" value="Submit">
+                    <img id="submitButton" src="assets/images/Submit-Arrow-Button.svg" alt="Submit Arrow">
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../public/js/login.js"></script>
