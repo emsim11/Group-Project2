@@ -1,7 +1,4 @@
-const express = require('express');
-const {  } = require('../models');
-const router = express.Router();
-const sequelize = require('../config/connection');
+
 
 // GET route for the homepage
 router.get('/', async (req, res) => {
