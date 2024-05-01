@@ -22,5 +22,4 @@ Muscle.hasMany(Exercise, {
 })
 
 
-
 module.exports = { Date, Equipment, Exercise, Muscle, RepUnit, TimeUnit, WeightUnit, WorkoutCategory, WorkoutPlan }
