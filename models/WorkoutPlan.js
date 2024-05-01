@@ -13,6 +13,7 @@ const WorkoutPlanner = db.define('WorkoutPlanner', {
   },
   // Define any other attributes specific to the WorkoutPlanner model
   // duration, image, video link - what else is needed? are these needed?
+  //
 });
 
 // Define associations with other models
