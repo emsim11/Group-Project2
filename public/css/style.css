@@ -1,8 +1,11 @@
+/* TODO: Get Rid of CSS Properties That No Longer Apply and Fix Comment Sections */
+
+/* Global */
 * {
     margin: 0;
 }
 
-/* Header Display */
+/* Header */
 header {
     text-align: center;
     border: 5px solid #fafafa;
@@ -16,15 +19,13 @@ body {
     background-color: #8ed6ee;
 }
 
-/* Page Heading */
+/* Homepage */
 h1 {
     text-align: center;
     color: #fafafa;
     font-size: 45px;
     padding-bottom: 10px;
 }
-
-/* Welcome Paragraph */
 
 #Welcome {
     text-align: center;

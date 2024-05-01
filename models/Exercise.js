@@ -23,6 +23,16 @@ Exercise.init(
         Exercise_Image: {
             type: DataTypes.STRING,
             allowNull: false,
+            validate: {
+                isSvgFilePath(value) {
+                    if (typeof value !== 'string') {
+                        throw new Error('File path must be a string');
+                    }
+                    if (!/\.(svg)$/.test(value)) {
+                        throw new Error('File path must have a .svg extension');
+                    }
+                }
+            }
         },
         Category_Name: {
             type: DataTypes.STRING,
@@ -57,6 +67,8 @@ Exercise.init(
         modelName: 'Exercises'
     }
 );
+
+// TODO: Define belongsToMany Association to Establish Relationship to WorkoutPlan
 
 Exercise.sync();
 

@@ -1,40 +1,33 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const {  } = require('../../models');
 const withAuth = require('../../utils/auth');
+const { Date, Equipment, Exercise, index, Muscle, RepUnit, User, WeightUnit, WorkoutCategory, WorkoutPlan } = require('../../models');
 
-
-// Middleware to check if user is logged in
+// Middleware to Check If User's Logged In
 const withAuth = (req, res, next) => {
     if (!req.session.loggedIn) {
       res.redirect('/login');
     } else {
       next();
     }
-  };
+};
 
-
- // Dashboard route to display user's dashboard with all posts
-router.get('/dashboard', withAuth, async (req, res) => {
-        try {
-      
-          // Render the dashboard template
-          res.render('dashboard', { username: req.session.username });
+// Homepage Route to Display User's Dashboard With All Posts
+router.get('/homepage', withAuth, async (req, res) => {
+  try {
+    // Render the Dashboard Template
+    res.render('homepage', { username: req.session.username });
         } catch (error) {
           console.error(error);
           res.status(500).json({ message: 'Internal Server Error' });
         }
       });
 
-      
-// Dashboard route to handle logout
-  router.post('/logout', withAuth, (req, res) => {
+// Dashboard Route to Handle Logout
+router.post('/logout', withAuth, (req, res) => {
     req.session.destroy(() => {
       res.redirect('/');
     });
-  });
-  
-  module.exports = router;
+});
 
-
-
+module.exports = router;

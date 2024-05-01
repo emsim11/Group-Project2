@@ -1,4 +1,35 @@
-// Feature: Display Workout Choices
+// TODO: Figure Out Which Code Applies and Update API Accordingly
+
+// Exercise Data (WGER API)
+var wgerEndpoints = { // JSON Object Containing API Endpoints
+    'exercise': 'https://wger.de/api/v2/exercise/?limit=100&language=2',
+    'exercisecategory': 'https://wger.de/api/v2/exercisecategory/?',
+    'exerciseimage': 'https://wger.de/api/v2/exerciseimage/?',
+    'exerciseinfo': 'https://wger.de/api/v2/exerciseinfo/?'
+};
+
+// Function: Fetch WGER Data Endpoints
+function fetchExercises() {
+    return fetchDataFromEndpoint('exercise');
+};
+
+// Function: Fetch Data From a Specific Endpoint
+function fetchDataFromEndpoint(endpointKey, params) {
+    var endpoint = wgerEndpoints[endpointKey];
+    if (params) {
+        endpoint += "&" + params;
+    }
+    return fetch(endpoint)
+        .then(function (resp) { return resp.json() });
+};
+
+// Function: Run Console Log to Ensure API Works
+fetchExercises().then(function (data) { console.log(data) });
+fetch("https://wger.de/api/v2/exercisecategory/")
+    .then(function (resp) { return resp.json(); })
+    .then(function (data) { console.log(data); });
+
+// Function: Display Workout Choices
 var exeButton = $(".exerciseButton").on("click", function () {
     $(".workoutChoices").css("visibility", "visible")
 });
@@ -104,3 +135,56 @@ var exeButton = $(".exerciseButton").on("click", function () {
         }
     });
 };
+
+// Function: "Begin Workout" Button To Display Workout Planner
+document.addEventListener('DOMContentLoaded', function () {
+    var startWorkoutButton = document.getElementById('startWorkout');
+    var mainContent = document.getElementById('mainContent');
+    var workoutPlanner = document.getElementById('workoutPlanner');
+    startWorkoutButton.addEventListener('click', function () {
+        mainContent.style.display = 'none';
+        workoutPlanner.style.display = 'block';
+        setInterval(setTime, 1000);
+    });
+});
+
+// Function: Display Workout Message Based On Workout Choice Made By User
+const workoutChoicesCategories = document.querySelectorAll('.workoutChoices li'); // Get List of Workout Choices
+workoutChoicesCategories.forEach(item => { // Add Click Event Listener to Each List Item
+    item.addEventListener('click', function () {
+        const selectedCategory = item.textContent.trim(); // Get Text Content of Clicked Item
+        console.log(selectedCategory);
+        const workoutMessage = document.getElementById('workoutMessage'); // Update Workout Message Based On Selected Workout Category
+        switch (selectedCategory) {
+            case 'Complete Arm Workout':
+                workoutMessage.textContent = 'Today is Arm Day - Get those biceps pumping!';
+                break;
+            case 'Leg Workout':
+                workoutMessage.textContent = 'Today is Leg Day - Strengthen those legs!';
+                break;
+            case 'Calves Workout':
+                workoutMessage.textContent = 'Today is Calves Day - Tone those calves!';
+                break;
+            case 'Upper Body Workout':
+                workoutMessage.textContent = 'Today is Upper Body Day - Build a strong upper body!';
+                break;
+            case 'Back Workout':
+                workoutMessage.textContent = 'Today is Back Day - Strengthen your back!';
+                break;
+            case 'Shoulder Workout':
+                workoutMessage.textContent = 'Today is Shoulder Day - Bulk up your shoulders!';
+                break;
+            case 'Ab Workout':
+                workoutMessage.textContent = 'Today is Ab Day - Work on those core muscles!';
+                break;
+            case 'Cardio Workout':
+                workoutMessage.textContent = 'Today is Cardio Day - Get your heart pumping with these cardio workouts!';
+                break;
+            case 'Rest Day':
+                workoutMessage.textContent = 'Today is Rest Day - Relax, recover, and reward yourself!';
+                break;
+            default:
+                workoutMessage.textContent = 'Your Workout List:';
+        };
+    });
+});

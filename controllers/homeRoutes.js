@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const {  } = require('../models');
+const { Date, Equipment, Exercise, index, Muslce, RepUnit, User, WeightUnit, WorkoutCategory, WorkoutPlan } = require('../models');
 const withAuth = require('../utils/auth');
 
-// GET route for the homepage
+// TODO: Double Check This Code Applies to Our Application Properly (GET Route For the Homepage)
 router.get('/', async (req, res) => {
     try {
         const recentPosts = await Post.findAll({ limit: 5, order: [['createdAt', 'DESC']] });
@@ -15,13 +15,12 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    // If the user is already logged in, redirect the request to another route
+    // If the User is Already Logged In, Redirect the Request to Homepage
     if (req.session.loggedIn) {
-      res.redirect('/dashboard');
+      res.redirect('/homepage');
       return;
     }
     res.render('login');
   });
-
 
 module.exports = router;

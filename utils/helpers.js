@@ -1,8 +1,7 @@
 module.exports = {
-    // Formats a common date that will display the date in a specific format
-    // May not eliminate the need for Day.js as Day.js if a more powerful library
+    // Formats Common Date in Specific Format (NOTE: Might Still Need Day.js / More Powerful Library)
     format_date: (date) => {
-      // Format date as MM/DD/YYYY
+      // Format Date as MM/DD/YYYY
       return date.toLocaleDateString();
     },
-}
+};

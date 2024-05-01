@@ -22,7 +22,7 @@ router.get('/workouts', async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-})
+});
 
 // GET ROUTE to Retrieve List of Muscle Groups as JSON
 router.get('/muscle_groups', async (req, res) => {
@@ -32,7 +32,7 @@ router.get('/muscle_groups', async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-})
+});
 
 // GET ROUTE to Retrieve List of Equipments as JSON
 router.get('/equipment', async (req, res) => {
@@ -42,7 +42,7 @@ router.get('/equipment', async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-})
+});
 
 // GET ROUTE to Retrieve List of Reps Units as JSON
 router.get('/rep_units', async (req, res) => {
@@ -52,7 +52,7 @@ router.get('/rep_units', async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-})
+});
 
 // GET ROUTE to Retrieve List of Weights Units as JSON
 router.get('/weight_units', async (req, res) => {
@@ -62,7 +62,7 @@ router.get('/weight_units', async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-})
+});
 
 // GET ROUTE to Retrieve List of Past Workouts as JSON
 router.get('/past_workouts', async (req, res) => {
@@ -72,14 +72,12 @@ router.get('/past_workouts', async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-})
+});
 
-// MAY NOT NEED THIS
-// Get a workout by id
+// TODO: Figure Out If/Where to Work This In: (Get a Workout By Id)
 router.get('/:id', getWorkout, (req, res) => {
   res.json(res.workout);
 });
-
 
 // POST Route to Create a New Workout
 router.post('/', async (req, res) => {
@@ -96,7 +94,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Update a workout
+// Update a Workout
 router.patch('/:id', getWorkout, async (req, res) => {
   if (req.body.name!= null) {
     res.workout.name = req.body.name;
@@ -114,10 +112,7 @@ router.patch('/:id', getWorkout, async (req, res) => {
   }
 });
 
-
-// Do we need this?
-//
-// Delete a workout
+// TODO: Figure Out If/Where to Work This In: (Delete a Workout)
 router.delete('/:id', getWorkout, async (req, res) => {
   try {
     await res.workout.remove();
@@ -127,10 +122,7 @@ router.delete('/:id', getWorkout, async (req, res) => {
   }
 });
 
-
-// I don't think we need this as workouts won't have searchable id's right?
-//
-// // Middleware to get workout by id
+// TODO: Figure Out If/Where to Work This In: (Middleware to Get Workout By Id)
 async function getWorkout(req, res, next) {
   let workout;
 
@@ -145,6 +137,6 @@ async function getWorkout(req, res, next) {
 
   res.workout = workout;
   next();
-}
+};
 
 module.exports = router;
