@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Workout = require('../../models/Project');
+const Workout = require('../../models/Exercise');
 const withAuth = require('../../utils/auth');
 
 // API CONTROLLER:
@@ -74,6 +74,7 @@ router.get('/past_workouts', async (req, res) => {
   }
 })
 
+// MAY NOT NEED THIS
 // Get a workout by id
 router.get('/:id', getWorkout, (req, res) => {
   res.json(res.workout);
@@ -117,33 +118,33 @@ router.patch('/:id', getWorkout, async (req, res) => {
 // Do we need this?
 //
 // Delete a workout
-// router.delete('/:id', getWorkout, async (req, res) => {
-//   try {
-//     await res.workout.remove();
-//     res.json({ message: 'Workout deleted successfully' });
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// });
+router.delete('/:id', getWorkout, async (req, res) => {
+  try {
+    await res.workout.remove();
+    res.json({ message: 'Workout deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 
 // I don't think we need this as workouts won't have searchable id's right?
 //
 // // Middleware to get workout by id
-// async function getWorkout(req, res, next) {
-//   let workout;
+async function getWorkout(req, res, next) {
+  let workout;
 
-//   try {
-//     workout = await Workout.findById(req.params.id);
-//     if (workout == null) {
-//       return res.status(404).json({ message: 'Cannot find workout' });
-//     }
-//   } catch (err) {
-//     return res.status(500).json({ message: err.message });
-//   }
+  try {
+    workout = await Workout.findById(req.params.id);
+    if (workout == null) {
+      return res.status(404).json({ message: 'Cannot find workout' });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
 
-//   res.workout = workout;
-//   next();
-// }
+  res.workout = workout;
+  next();
+}
 
 module.exports = router;

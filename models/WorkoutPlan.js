@@ -1,7 +1,11 @@
-const { DataTypes } = require('sequelize');
-const db = require('../config/connection');
+const sequelize = require('../config/connection');
+const { Model, DataTypes } = require('sequelize');
 
-const WorkoutPlanner = db.define('WorkoutPlanner', {
+class WorkoutPlan extends Model {}
+
+// Define the WorkoutPlanner model
+WorkoutPlan.init(
+  {
   // Define the attributes of the WorkoutPlanner model
   name: {
     type: DataTypes.STRING,
@@ -14,10 +18,15 @@ const WorkoutPlanner = db.define('WorkoutPlanner', {
   // Define any other attributes specific to the WorkoutPlanner model
   // duration, image, video link - what else is needed? are these needed?
   //
-});
+},
+{
+  sequelize,
+  timestamps: false,
+  freezeTableName: true,
+  underscored: true,
+  modelName: 'WorkoutPlan'
+}
+);
 
-// Define associations with other models
-WorkoutPlanner.belongsTo(User);
-WorkoutPlanner.belongsTo(WorkoutCategory);
 
-module.exports = WorkoutPlanner;
+module.exports = WorkoutPlan;
