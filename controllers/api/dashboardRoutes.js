@@ -1,16 +1,7 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
+const Sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 const { Date, Equipment, Exercise, index, Muscle, RepUnit, User, WeightUnit, WorkoutCategory, WorkoutPlan } = require('../../models');
-
-// Middleware to Check If User's Logged In
-const withAuth = (req, res, next) => {
-    if (!req.session.loggedIn) {
-      res.redirect('/login');
-    } else {
-      next();
-    }
-};
 
 // Homepage Route to Display User's Dashboard With All Posts
 router.get('/homepage', withAuth, async (req, res) => {

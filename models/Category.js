@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-const Equipment = sequelize.define('Equipment', {
+const Category = sequelize.define('Category', {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -11,6 +11,7 @@ const Equipment = sequelize.define('Equipment', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true
     }
 }, {
     sequelize,
@@ -19,8 +20,8 @@ const Equipment = sequelize.define('Equipment', {
     underscored: true,
 });
 
-Equipment.associate = (models) => {
-    Equipment.belongsToMany(models.Exercise, { through: 'ExerciseEquipment' });
+Category.associate = (models) => {
+    Category.belongsToMany(models.Exercise, { through: 'ExerciseCategory' });
 };
 
-module.exports = Equipment;
+module.exports = Category;

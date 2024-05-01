@@ -44,7 +44,7 @@ WorkoutPlan.belongsToMany(Exercise, { through: 'WorkoutPlanExercises' });
 async function createAndRetrieveWorkoutPlan() {
   const newWorkoutPlan = await WorkoutPlan.create({
     Date: '2024-10-15',
-    Exercises: [1, 2, 3]
+    Exercise: [1, 2, 3]
   });
 
 newWorkoutPlan.then((createdWorkoutPlan) => {
@@ -57,7 +57,7 @@ newWorkoutPlan.then((createdWorkoutPlan) => {
 const workoutPlanId = 1;
 
 const workoutPlanWithExercises = await WorkoutPlan.findByPk(workoutPlanId, {
-  include: Exercises
+  include: Exercise
 });
 
 workoutPlanWithExercises.then((result) => {
