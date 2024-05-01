@@ -41,10 +41,11 @@ WorkoutPlan.init(
 
 WorkoutPlan.belongsToMany(Exercise, { through: 'WorkoutPlanExercises' });
 
-const newWorkoutPlan = await WorkoutPlan.create({
-  Date: '2024-10-15',
-  Exercises: [1, 2, 3]
-});
+async function createAndRetrieveWorkoutPlan() {
+  const newWorkoutPlan = await WorkoutPlan.create({
+    Date: '2024-10-15',
+    Exercises: [1, 2, 3]
+  });
 
 newWorkoutPlan.then((createdWorkoutPlan) => {
   console.log('New Workout Plan created:');
@@ -71,5 +72,6 @@ workoutPlanWithExercises.then((result) => {
 });
 
 WorkoutPlan.sync();
+}
 
 module.exports = WorkoutPlan;

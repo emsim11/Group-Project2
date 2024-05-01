@@ -19,4 +19,4 @@ Muscle.hasMany(Exercise, {
     onDelete: 'CASCADE'
 });
 
-module.exports = { Date, Equipment, Exercise, Muscle, RepUnit, TimeUnit, WeightUnit, WorkoutCategory, WorkoutPlan }
+module.exports = { Date, Equipment, Exercise, Muscle, RepUnit, WeightUnit, WorkoutCategory, WorkoutPlan }
