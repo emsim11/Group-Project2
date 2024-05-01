@@ -5,13 +5,13 @@ class Date extends Model {}
 
 Date.init(
     {
-        // Define the model attributes (fields)
-        id: {
+        Date_Id: {
             type: DataTypes.INTEGER,
+            allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
-        date: {
+        Date_Name: {
             type: DataTypes.DATE,
             allowNull: false
         },
@@ -21,9 +21,8 @@ Date.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'date'
+        modelName: 'Date'
     }
 );
 
-// Export the Date model
 module.exports = Date;

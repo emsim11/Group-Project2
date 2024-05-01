@@ -2,34 +2,35 @@ const express = require('express');
 const { User } = require('../models');
 const router = express.Router();
 
-// GET route for user registration form
+// GET Route For User Registration Form View Rendering
 router.get('/register', (req, res) => {
-    res.render('register', { loggedIn: req.session.loggedIn }); // Render the registration form view
+    res.render('register', { loggedIn: req.session.loggedIn });
 });
 
-// Registration route - handles the form submission
+// Post Route For User Registration Form Submission Handling
 router.post('/register', async (req, res) => {
     try {
-        // Extract user input from the registration form
-        const { username, email, password } = req.body;
+        // Extract User Input From the Registration Form
+        const { First_Name, Last_Name, Email, Password } = req.body;
 
-        // Validate user input (e.g., check for empty fields, validate email format)
+        // Validate User Input (e.g., Check For Empty Fields, Validate Email Format)
 
-        // Check if the user already exists in the database
-        const existingUser = await User.findOne({ where: { email } });
+        // Check if the User Already Exists in the Database
+        const existingUser = await User.findOne({ where: { Email } });
 
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
 
-        // Hash the user's password for security
+        // Hash the User's Password For Security
         const hashedPassword = await bcrypt.hash(password, 10); // Use bcrypt or another hashing library
 
-        // Create a new user record in the database
+        // Create a New User Record in the Database
         const newUser = await User.create({
-            username,
-            email,
-            password: hashedPassword // Store the hashed password in the database
+            First_Name,
+            Last_Name,
+            Email,
+            Password: hashedPassword
         });
 
         res.status(201).json({ message: 'User registered successfully', user: newUser });
@@ -39,21 +40,19 @@ router.post('/register', async (req, res) => {
     }
 });
 
-
-// Login route - render the login form
+// Get Route For User Login Form Rendering
 router.get('/login', (req, res) =>{
     res.render('login', { loggedIn: req.session.loggedIn 
     })
-})
+});
 
-
-// POST route for user login
+// POST Route For User Login
 router.post('/login', async (req, res) => {
     try {
-        const userData = await User.findOne({ where: { email: req.body.email } });
+        const userData = await User.findOne({ where: { Email: req.body.Email } });
 
-        if (!userData || !userData.checkPassword(req.body.password)) {
-            res.status(400).json({ message: 'Incorrect email or password' });
+        if (!userData || !userData.checkPassword(req.body.Password)) {
+            res.status(400).json({ message: 'Invalid email or password' });
             return;
         }
 
@@ -68,7 +67,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// POST route for user logout
+// POST Route For User Logout
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
@@ -78,6 +77,5 @@ router.post('/logout', (req, res) => {
         res.status(404).end();
     }
 });
-
 
 module.exports = router;
