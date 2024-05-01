@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
-const {  } = require('../models');
-const withAuth = require('../utils/auth');
+const sequelize = require('../../config/connection');
+const {  } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 
 // Middleware to check if user is logged in
@@ -26,8 +26,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
         }
       });
 
-
-// 
+      
 // Dashboard route to handle logout
   router.post('/logout', withAuth, (req, res) => {
     req.session.destroy(() => {
@@ -38,12 +37,4 @@ router.get('/dashboard', withAuth, async (req, res) => {
   module.exports = router;
 
 
-router.get('/new', (req, res) => {
-    res.render('new-post');
-});
-
-
-
-module.exports = router;
-      
 
