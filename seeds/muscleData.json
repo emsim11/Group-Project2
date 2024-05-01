@@ -1,0 +1,92 @@
+[
+    {
+        "name": "Anterior Deltoid",
+        "name_alt": "Shoulders",
+        "is_front": "true",
+        "image": "../Assets/Images/muscles/shoulders.svg"
+    },
+    {
+        "name": "Biceps Brachii",
+        "name_alt": "Biceps",
+        "is_front": "true",
+        "image": "../Assets/Images/muscles/biceps.svg"
+    },
+    {
+        "name": "Biceps Femoris",
+        "name_alt": "Hamstrings",
+        "is_front": "false",
+        "image": "../Assets/Images/muscles/hamstrings.svg"
+    },
+    {
+        "name": "Brachialis",
+        "name_alt": "",
+        "is_front": "true",
+        "image": "../Assets/Images/muscles/upper-arm.svg"
+    },
+    {
+        "name": "Gastrocnemius",
+        "name_alt": "Calves",
+        "is_front": "false",
+        "image": "../Assets/Images/muscles/calves.svg"
+    },
+    {
+        "name": "Gluteus Maximus",
+        "name_alt": "Glutes",
+        "is_front": "false",
+        "image": "../Assets/Images/muscles/glutes.svg"
+    },
+    {
+        "name": "Latissimus Dorsi",
+        "name_alt": "Lats",
+        "is_front": "false",
+        "image": "../Assets/Images/muscles/lats.svg"
+    },
+    {
+        "name": "Obliquus Externus Abdominis",
+        "name_alt": "",
+        "is_front": "true",
+        "image": "../Assets/Images/muscles/abs-outer.svg"
+    },
+    {
+        "name": "Pectoralis Major",
+        "name_alt": "Chest",
+        "is_front": "true",
+        "image": "../Assets/Images/muscles/chest.svg"
+    },
+    {
+        "name": "Quadriceps Femoris",
+        "name_alt": "Quads",
+        "is_front": "true",
+        "image": "../Assets/Images/muscles/quads.svg"
+    },
+    {
+        "name": "Rectus Abdominis",
+        "name_alt": "Abs",
+        "is_front": "true",
+        "image": "../Assets/Images/muscles/abs.svg"
+    },
+    {
+        "name": "Serratus Anterior",
+        "name_alt": "",
+        "is_front": "true",
+        "image": "../Assets/Images/muscles/chest-scapula.svg"
+    },
+    {
+        "name": "Soleus",
+        "name_alt": "",
+        "is_front": "false",
+        "image": "../Assets/Images/muscles/lower-calves.svg"
+    },
+    {
+        "name": "Trapezius",
+        "name_alt": "",
+        "is_front": "false",
+        "image": "../Assets/Images/muscles/traps.svg"
+    },
+    {
+        "name": "Triceps Brachii",
+        "name_alt": "Triceps",
+        "is_front": "false",
+        "image": "../Assets/Images/muscles/triceps.svg"
+    }
+]

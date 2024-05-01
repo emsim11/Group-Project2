@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Barbell"
+    },
+    {
+        "name": "Bench"
+    },
+    {
+        "name": "Dumbbell"
+    },
+    {
+        "name": "Exercise Ball"
+    },
+    {
+        "name": "Gym Mat"
+    },
+    {
+        "name": "Incline Bench"
+    },
+    {
+        "name": "Kettlebell"
+    },
+    {
+        "name": "Pull-Up Bar"
+    },
+    {
+        "name": "SZ-Bar"
+    },
+    {
+        "name": "None (Bodyweight Exercise)"
+    }
+]

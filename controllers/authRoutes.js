@@ -7,16 +7,16 @@ router.get('/register', (req, res) => {
     res.render('register', { loggedIn: req.session.loggedIn });
 });
 
-// Post Route For User Registration Form Submission Handling
+// POST Route For User Registration Form Submission Handling
 router.post('/register', async (req, res) => {
     try {
         // Extract User Input From the Registration Form
-        const { First_Name, Last_Name, Email, Password } = req.body;
+        const { first_name, last_name, email, password } = req.body;
 
         // Validate User Input (e.g., Check For Empty Fields, Validate Email Format)
 
         // Check if the User Already Exists in the Database
-        const existingUser = await User.findOne({ where: { Email } });
+        const existingUser = await User.findOne({ where: { email } });
 
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
@@ -27,10 +27,10 @@ router.post('/register', async (req, res) => {
 
         // Create a New User Record in the Database
         const newUser = await User.create({
-            First_Name,
-            Last_Name,
-            Email,
-            Password: hashedPassword
+            first_name,
+            last_name,
+            email,
+            password: hashedPassword
         });
 
         res.status(201).json({ message: 'User registered successfully', user: newUser });
@@ -40,7 +40,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Get Route For User Login Form Rendering
+// GET Route For User Login Form Rendering
 router.get('/login', (req, res) =>{
     res.render('login', { loggedIn: req.session.loggedIn 
     })
@@ -49,9 +49,9 @@ router.get('/login', (req, res) =>{
 // POST Route For User Login
 router.post('/login', async (req, res) => {
     try {
-        const userData = await User.findOne({ where: { Email: req.body.Email } });
+        const userData = await User.findOne({ where: { email: req.body.email } });
 
-        if (!userData || !userData.checkPassword(req.body.Password)) {
+        if (!userData || !userData.checkPassword(req.body.password)) {
             res.status(400).json({ message: 'Invalid email or password' });
             return;
         }

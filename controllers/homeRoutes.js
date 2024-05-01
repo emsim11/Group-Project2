@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Date, Equipment, Exercise, index, Muslce, RepUnit, User, WeightUnit, WorkoutCategory, WorkoutPlan } = require('../models');
+const { Date, Equipment, Exercise, index, Muscle, Rep, User, Weight, Category, WorkoutPlan } = require('../models');
 const withAuth = require('../utils/auth');
 
 // TODO: Double Check This Code Applies to Our Application Properly (GET Route For the Homepage)

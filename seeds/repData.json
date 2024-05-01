@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Kilometers"
+    },
+    {
+        "name": "Max Reps"
+    },
+    {
+        "name": "Miles"
+    },
+    {
+        "name": "Minutes"
+    },
+    {
+        "name": "Repetitions"
+    },
+    {
+        "name": "Seconds"
+    },
+    {
+        "name": "Until Failure"
+    }
+]

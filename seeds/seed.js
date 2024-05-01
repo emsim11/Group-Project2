@@ -18,8 +18,8 @@ const seedDatabase = async () => {
     });
     
     // TODO: Update This Code to Function Within Our App
-    for (const project of projectData) {
-        await Project.create({
+    for (const Equipment of equipmentData) {
+        await Equipment.create({
             ...project,
             User_Id: users[Math.floor(Math.random() * users.length)].User_Id,
         });

@@ -1,142 +1,97 @@
 const router = require('express').Router();
-const Workout = require('../../models/Exercise');
+const { Category, Date, Equipment, Exercise, Muscle, Rep, User, Weight, WorkoutPlan } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// API CONTROLLER:
+require('dotenv').config();
 
-// GET ROUTE to Retrieve List of Exercises as JSON
-router.get('/', async (req, res) => {
+// GET ROUTES - READ
+router.get('/exercises', withAuth, async (req, res) => {
   try {
-    const workouts = await Workout.find();
-    res.json(workouts);
+    const exercises = await Exercise.find({});
+    res.json(exercises);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// GET ROUTE to Retrieve List of Workout Categories as JSON
-router.get('/workouts', async (req, res) => {
+router.get('/categories', withAuth, async (req, res) => {
   try {
-    const workouts = await Workout.find();
-    res.json(workouts);
+    const categories = await Category.find({});
+    res.json(categories);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// GET ROUTE to Retrieve List of Muscle Groups as JSON
-router.get('/muscle_groups', async (req, res) => {
+router.get('/muscles', withAuth, async (req, res) => {
   try {
-    const muscle_groups = await MuscleGroup.find();
-    res.json(muscle_groups);
+    const muscles = await Muscle.find({});
+    res.json(muscles);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// GET ROUTE to Retrieve List of Equipments as JSON
-router.get('/equipment', async (req, res) => {
+router.get('/equipment', withAuth, async (req, res) => {
   try {
-    const equipment = await Equipment.find();
+    const equipment = await Equipment.find({});
     res.json(equipment);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// GET ROUTE to Retrieve List of Reps Units as JSON
-router.get('/rep_units', async (req, res) => {
+router.get('/reps', withAuth, async (req, res) => {
   try {
-    const rep_units = await RepUnit.find();
-    res.json(rep_units);
+    const reps = await Rep.find({});
+    res.json(reps);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// GET ROUTE to Retrieve List of Weights Units as JSON
-router.get('/weight_units', async (req, res) => {
+router.get('/weights', withAuth, async (req, res) => {
   try {
-    const weight_units = await WeightUnit.find();
-    res.json(weight_units);
+    const weights = await Weight.find({});
+    res.json(weights);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// GET ROUTE to Retrieve List of Past Workouts as JSON
-router.get('/past_workouts', async (req, res) => {
+router.get('/workouts', withAuth, async (req, res) => {
   try {
-    const past_workouts = await PastWorkout.find();
-    res.json(past_workouts);
+    const workouts = await WorkoutPlan.find({});
+    res.json(workouts);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// TODO: Figure Out If/Where to Work This In: (Get a Workout By Id)
-router.get('/:id', getWorkout, (req, res) => {
-  res.json(res.workout);
-});
-
-// POST Route to Create a New Workout
-router.post('/', async (req, res) => {
-  const workout = new Workout({
-    name: req.body.name,
-    exercises: req.body.exercises
-  });
-
+// POST ROUTES - CREATE
+router.post('/equipment', withAuth, async (req, res) => {
   try {
-    const newWorkout = await workout.save();
-    res.status(201).json(newWorkout);
+    const newEquipment = await Equipment.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
+
+    res.status(200).json(newEquipment);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(500).json(err);
   }
 });
 
-// Update a Workout
-router.patch('/:id', getWorkout, async (req, res) => {
-  if (req.body.name!= null) {
-    res.workout.name = req.body.name;
-  }
+// Create Date
+// Middleware to Create Exercises List
+// Create Workout Plan
 
-  if (req.body.exercises!= null) {
-    res.workout.exercises = req.body.exercises;
-  }
+// PATCH ROUTES
+// Update Workout Plan
 
-  try {
-    const updatedWorkout = await res.workout.save();
-    res.json(updatedWorkout);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
+// DELETE ROUTES
+// Delete Workout Plan
 
-// TODO: Figure Out If/Where to Work This In: (Delete a Workout)
-router.delete('/:id', getWorkout, async (req, res) => {
-  try {
-    await res.workout.remove();
-    res.json({ message: 'Workout deleted successfully' });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// TODO: Figure Out If/Where to Work This In: (Middleware to Get Workout By Id)
-async function getWorkout(req, res, next) {
-  let workout;
-
-  try {
-    workout = await Workout.findById(req.params.id);
-    if (workout == null) {
-      return res.status(404).json({ message: 'Cannot find workout' });
-    }
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-
-  res.workout = workout;
-  next();
-};
+// Middleware to Get Workout Plan
 
 module.exports = router;
