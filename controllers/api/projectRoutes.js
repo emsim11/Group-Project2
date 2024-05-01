@@ -15,19 +15,64 @@ router.get('/', async (req, res) => {
 });
 
 // GET ROUTE to Retrieve List of Workout Categories as JSON
+router.get('/workouts', async (req, res) => {
+  try {
+    const workouts = await Workout.find();
+    res.json(workouts);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+})
 
 // GET ROUTE to Retrieve List of Muscle Groups as JSON
+router.get('/muscle_groups', async (req, res) => {
+  try {
+    const muscle_groups = await MuscleGroup.find();
+    res.json(muscle_groups);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+})
 
 // GET ROUTE to Retrieve List of Equipments as JSON
+router.get('/equipment', async (req, res) => {
+  try {
+    const equipment = await Equipment.find();
+    res.json(equipment);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+})
 
 // GET ROUTE to Retrieve List of Reps Units as JSON
+router.get('/rep_units', async (req, res) => {
+  try {
+    const rep_units = await RepUnit.find();
+    res.json(rep_units);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+})
 
 // GET ROUTE to Retrieve List of Weights Units as JSON
-
-
+router.get('/weight_units', async (req, res) => {
+  try {
+    const weight_units = await WeightUnit.find();
+    res.json(weight_units);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+})
 
 // GET ROUTE to Retrieve List of Past Workouts as JSON
-
+router.get('/past_workouts', async (req, res) => {
+  try {
+    const past_workouts = await PastWorkout.find();
+    res.json(past_workouts);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+})
 
 // Get a workout by id
 router.get('/:id', getWorkout, (req, res) => {
@@ -49,7 +94,6 @@ router.post('/', async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
-
 
 // Update a workout
 router.patch('/:id', getWorkout, async (req, res) => {
