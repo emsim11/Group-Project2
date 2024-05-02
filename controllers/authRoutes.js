@@ -2,10 +2,7 @@ const express = require('express');
 const { User } = require('../models');
 const router = express.Router();
 
-// GET Route For User Login Form View Rendering
-router.get('/login', (req, res) => {
-    res.render('login', { loggedIn: req.session.loggedIn });
-});
+
 
 // POST Route For User Login
 router.post('/login', async (req, res) => {
@@ -30,10 +27,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// GET Route For User Registration Form View Rendering
-router.get('/signup', (req, res) => {
-    res.render('signup', { loggedIn: req.session.loggedIn });
-});
+
 
 // POST Route For User Registration Form Submission Handling
 router.post('/signup', async (req, res) => {
@@ -66,6 +60,16 @@ router.post('/signup', async (req, res) => {
         console.error(error);
         res.status(500).json({ message: 'Failed to register user' });
     }
+});
+
+
+// GET Route For User Login Form View Rendering
+router.get('/login', (req, res) => {
+    res.render('login', { loggedIn: req.session.loggedIn });
+});
+
+router.get('/createaccount', (req, res) => {
+    res.render('signup');
 });
 
 // POST Route For User Logout
