@@ -7,8 +7,9 @@ class User extends Model {
         return bcrypt.compareSync(loginPw, this.password);
     }
 }
+User.init(
 
-const User = sequelize.define('User', {
+    {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -19,11 +20,11 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    Last_Name: {
+    last_name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    Email: {
+    email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
@@ -31,17 +32,17 @@ const User = sequelize.define('User', {
             isEmail: true,
         },
     },
-    Password: {
+    password: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
             len: [8],
         },
     },
-}, {
-    // Bcrypt Middleware For Password Hashing and Verification
+}, 
+{
     hooks: {
-        beforeCreate: async(newUserData) => {
+        beforeCreate: async (newUserData) => {
             newUserData.password = await bcrypt.hash(newUserData.password, 10);
             return newUserData;
         },
