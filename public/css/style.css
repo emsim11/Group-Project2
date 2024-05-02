@@ -1,24 +1,160 @@
-/* TODO: Get Rid of CSS Properties That No Longer Apply and Fix Comment Sections */
+:root {
+    --color-darkblue: #427884;
+    --color-lightblue: #8ED6EE;
+    --color-lightwhite: #FAFAFA;
+    --color-white: #FFFFFF;
+    --color-lightgray: #E6E6E6;
+    --color-darkgray: #666666;
+}
 
-/* Global */
+/* Main.Handlebars */
 * {
     margin: 0;
 }
-
-/* Header */
 header {
     text-align: center;
-    border: 5px solid #fafafa;
+    border: 2px solid var(--color-lightwhite);
     border-radius: 10px;
-    margin: 10px;
+    margin: 5px;
+    background-color: var(--color-darkblue);
+}
+
+footer {
+    text-align: center;
+    border: 5px solid var(--color-darkblue);
+    border-radius: 10px;
+    margin: 5px;
+    position: absolute;
+    bottom: 0;
     padding: 10px;
-    background-color: #427884;
+    background-color: var(--color-lightwhite);
+    width: 100%;
 }
 
-body {
-    background-color: #8ed6ee;
+/* Login Handlebars */
+.Container-Login {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--color-darkblue);
+    margin: 15px;
+    background: var(--color-darkblue);
+    background: linear-gradient(-75deg, #8ED6EE, #4f8b99);
+    border-radius: 10px;
 }
 
+.Container-Login-Form {
+    display: flex;
+}
+
+.Login-Form {
+    background: var(--color-white);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+@media (max-width: 992px) {
+    .Login-Image {
+        width: 35%;
+    }
+}
+
+.Login-Image {
+    width: 316px;
+}
+
+@media (max-width: 992px) {
+    .Login-Page {
+        width: 50%;
+    }
+}
+
+.Login-Page {
+    width: 290px;
+}
+
+.Form-Title {
+    font-family: Poppins-Bold;
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-bottom: 20px;
+}
+
+.Form-Group {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+.Form-Input {
+    font-family: Poppins-Medium;
+    font-size: 15px;
+    line-height: 1.5;
+    display: block;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 30px 0 68px;
+    border: none;
+    color: var(--color-darkgray);
+    background-color: var(--color-lightgray);
+}
+
+.Form-Input::placeholder {
+    color: var(--color-darkgray);
+}
+
+.Icon {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    padding-left: 35px;
+}
+
+.Container-Form-Button {
+    width: 100%;
+    padding-top: 20px;
+}
+.Form-Button {
+    font-family: Montserrat-Bold;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--color-white);
+    text-transform: uppercase;
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    background-color: var(--color-darkblue);
+    border: 0;
+}
+
+.Container-Signup-Button {
+    text-align: center;
+    padding-top: 100px;
+    width: 100%;
+}
+
+.Signup-Button {
+    font-family: Poppins-Regular;
+    font-size: 14px;
+    line-height: 1.5px;
+    color: var(--color-darkgray);
+}
 /* Homepage */
 h1 {
     text-align: center;
@@ -370,24 +506,8 @@ header .cal-current-date {
     list-style-type: none;
 }
 
-/* Footer Display */
-footer {
-    text-align: center;
-    border: 5px solid #427884;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
-    background-color: #fafafa
-    
-}
-
 @media only screen and (max-width: 600px) {
     .container {
         width: 80%;
     }
-}
-
-#Footer-Paragraph {
-    font-size: 20px;
-    padding-top: 5px;
 }

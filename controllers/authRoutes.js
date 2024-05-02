@@ -2,13 +2,41 @@ const express = require('express');
 const { User } = require('../models');
 const router = express.Router();
 
+// GET Route For User Login Form View Rendering
+router.get('/login', (req, res) => {
+    res.render('login', { loggedIn: req.session.loggedIn });
+});
+
+// POST Route For User Login
+router.post('/login', async (req, res) => {
+    try {
+        const userData = await User.findOne({ where: { email: req.body.email } });
+
+        if (!userData || !userData.checkPassword(req.body.password)) {
+            res.status(400).json({ message: 'Invalid email or password' });
+            return;
+        } else {
+            console.log('Welcome back! You are now logged in.');
+        }
+
+        req.session.save(() => {
+            req.session.userId = userData.id;
+            req.session.loggedIn = true;
+            res.status(200).json({ user: userData, message: 'Login successful' });
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Failed to login' });
+    }
+});
+
 // GET Route For User Registration Form View Rendering
-router.get('/register', (req, res) => {
-    res.render('register', { loggedIn: req.session.loggedIn });
+router.get('/signup', (req, res) => {
+    res.render('signup', { loggedIn: req.session.loggedIn });
 });
 
 // POST Route For User Registration Form Submission Handling
-router.post('/register', async (req, res) => {
+router.post('/signup', async (req, res) => {
     try {
         // Extract User Input From the Registration Form
         const { first_name, last_name, email, password } = req.body;
@@ -23,7 +51,7 @@ router.post('/register', async (req, res) => {
         }
 
         // Hash the User's Password For Security
-        const hashedPassword = await bcrypt.hash(password, 10); // Use bcrypt or another hashing library
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         // Create a New User Record in the Database
         const newUser = await User.create({
@@ -37,33 +65,6 @@ router.post('/register', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Failed to register user' });
-    }
-});
-
-// GET Route For User Login Form Rendering
-router.get('/login', (req, res) =>{
-    res.render('login', { loggedIn: req.session.loggedIn 
-    })
-});
-
-// POST Route For User Login
-router.post('/login', async (req, res) => {
-    try {
-        const userData = await User.findOne({ where: { email: req.body.email } });
-
-        if (!userData || !userData.checkPassword(req.body.password)) {
-            res.status(400).json({ message: 'Invalid email or password' });
-            return;
-        }
-
-        req.session.save(() => {
-            req.session.userId = userData.id;
-            req.session.loggedIn = true;
-            res.status(200).json({ user: userData, message: 'Login successful' });
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ message: 'Failed to login' });
     }
 });
 

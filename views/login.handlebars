@@ -1,46 +1,31 @@
-<div class="row">
-    <div class="col-md-6">
-        <h2>Login</h2>
-        
-        <form class="Form Login-Form">
-            <div class="Form-Group">
-                <label for="Email-Login">Email:</label>
-                <input class="Form-Input" type="text" id="Email-Login">
-            </div>
-            <div class="Form-Group">
-                <label for="Password-Login">Password:</label>
-                <input class="Form-Input" type="password" id="Password-Login">
-            </div>
-            <div class="Form-Group">
-                <button class="btn btn-primary" type="submit">Login</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="col-md-6">
-        <h2>Signup</h2>
-
-        <form class="Form Signup-Form">
-            <div class="Form-Group">
-                <label for="FirstName-Signup">First Name:</label>
-                <input class="Form-Input" type="text" id="FirstName-Signup">
-            </div>
-            <div class="Form-Group">
-                <label for="LastName-Signup">Last Name:</label>
-                <input class="Form-Input" type="text" id="LastName-Signup">
-            </div>
-            <div class="Form-Group">
-                <label for="Email-Signup">Email:</label>
-                <input class="Form-Input" type="text" id="Email-Signup">
-            </div>
-            <div class="Form-Group">
-                <label for="Password-Signup">Password:</label>
-                <input class="Form-Input" type="password" id="Password-Signup">
-            </div>
-            <div class="Form-Group">
-                <button class="btn btn-primary" type="submit">Signup</button>
-            </div>
-        </form>
+<div class="Container-Login">
+    <div class="Container-Login-Form">
+        <div class="Login-Image">
+            <img>
+        </div>
+        <div class="Login-Page">
+            <form class="Form Login-Form">
+                <h2 class="Form-Title">Member Login</h2>
+                <div class="Form-Group">
+                    <input class="Form-Input" type="text" id="Email-Login" placeholder="Email">
+                    <span class="Icon">
+                        <i class="fa-solid fa-envelope" style="color: #666666;"></i>
+                    </span>
+                </div>
+                <div class="Form-Group">
+                    <input class="Form-Input" type="password" id="Password-Login" placeholder="Password">
+                    <span class="Icon">
+                        <i class="fa-solid fa-lock" style="color: #666666;"></i>
+                    </span>
+                </div>
+                <div class="Container-Form-Button">
+                    <button class="Form-Button" type="submit">Login</button>
+                </div>
+                <div class="Container-Signup-Button">
+                    <a href="./signup.handlebars" class="Signup-Button">Create your Account<i class="fa-solid fa-long-arrow-right" style="margin-left: 5px;"></i></a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

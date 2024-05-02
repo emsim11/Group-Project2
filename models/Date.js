@@ -5,13 +5,13 @@ class Date extends Model {}
 
 Date.init(
     {
-        Date_Id: {
+        id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
-        Date_Name: {
+        name: {
             type: DataTypes.DATE,
             allowNull: false
         },
@@ -21,7 +21,6 @@ Date.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'Date'
     }
 );
 
