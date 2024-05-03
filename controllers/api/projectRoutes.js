@@ -5,6 +5,8 @@ const withAuth = require('../../utils/auth');
 require('dotenv').config();
 
 // GET ROUTES - READ
+
+
 router.get('/exercises', withAuth, async (req, res) => {
   try {
     const exercises = await Exercise.find({});
