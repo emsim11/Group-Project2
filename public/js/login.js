@@ -4,17 +4,19 @@ const loginFormHandler = async (event) => {
     // Collects values from the login form
     const email = document.querySelector('#Email-Login').value.trim();
     const password = document.querySelector('#Password-Login').value.trim();
-
+    console.log(email);
+    
     if (email && password) {
-        const response = await fetch('/api/users/login', {
+        const response = await fetch('/login', {
             method: 'POST',
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email: email, password: password }),
             headers: { 'Content-Type': 'application/json' },
         });
 
         if (response.ok) {
-            document.location.replace('/homepage');
+            window.location.replace('/homepage');
         } else {
+            console.log(response);
             alert(response.statusText);
         }
     }
@@ -22,4 +24,4 @@ const loginFormHandler = async (event) => {
 
 document
     .querySelector('.Form-Button')
-    .addEventListener('submit', loginFormHandler);
+    .addEventListener('click', loginFormHandler);

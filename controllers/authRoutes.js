@@ -1,20 +1,24 @@
 const express = require('express');
 const { User } = require('../models');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 
 // POST ROUTES
 router.post('/login', async (req, res) => {
+    console.log('Login reached');
     try {
         const userData = await User.findOne({ where: { email: req.body.email } });
+        console.log(userData);
 
         if (!userData || !userData.checkPassword(req.body.password)) {
+            console.log(userData);
             res.status(400).json({ message: 'Invalid email or password' });
             return;
         }
 
         req.session.save(() => {
             req.session.userId = userData.id;
-            req.session.loggedIn = true;
+            req.session.logged_in = true;
             res.status(200).json({ user: userData, message: 'Login successful' });
         });
     } catch (err) {
@@ -25,30 +29,22 @@ router.post('/login', async (req, res) => {
 
 router.post('/signup', async (req, res) => {
     try {
-        // Extract User Input From the Registration Form
         const { first_name, last_name, email, password } = req.body;
-
-        // Validate User Input (e.g., Check For Empty Fields, Validate Email Format)
-
-        // Check if the User Already Exists in the Database
         const existingUser = await User.findOne({ where: { email } });
 
         if (existingUser) {
             return res.status(400).json({ message: 'User already exists' });
         }
 
-        // Hash the User's Password For Security
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Create a New User Record in the Database
         const newUser = await User.create({
-            first_name,
-            last_name,
-            email,
-            password: hashedPassword
+            first_name: first_name,
+            last_name: last_name,
+            email: email,
+            password: password
         });
 
-        res.status(201).json({ message: 'User registered successfully', user: newUser });
+        res.redirect('/loginpage');
+
     } catch (error) {
         console.error(error);
         res.status(400).json({ message: 'Failed to register user' });
@@ -59,6 +55,7 @@ router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
             res.status(204).end();
+            res.redirect('/');
         });
     } else {
         res.status(404).end();
@@ -66,7 +63,7 @@ router.post('/logout', (req, res) => {
 });
 
 // GET ROUTES
-router.get('/login', (req, res) => {
+router.get('/loginpage', (req, res) => {
     res.render('login', { loggedIn: req.session.loggedIn });
 });
 

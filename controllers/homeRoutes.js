@@ -8,12 +8,21 @@ router.get('/', async (req, res) => {
         res.redirect('/homepage');
     } else {
         // User is not logged in, redirect to the login screen
-        res.redirect('/login');
+        res.redirect('/loginpage');
     }
 });
 
 router.get('/signup', (req, res) => {
     res.render('signup');
+});
+
+router.get('/homepage', withAuth, async (req, res) => {
+    try {
+      res.render('homepage', { username: req.session.username });
+          } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Internal Server Error' });
+          }
 });
 
 module.exports = router;
