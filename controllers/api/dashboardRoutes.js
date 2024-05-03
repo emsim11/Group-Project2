@@ -12,7 +12,7 @@ router.get('/homepage', withAuth, async (req, res) => {
           console.error(error);
           res.status(500).json({ message: 'Internal Server Error' });
         }
-      });
+  });
 
 // Dashboard Route to Handle Logout
 router.post('/logout', withAuth, (req, res) => {

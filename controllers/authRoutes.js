@@ -2,9 +2,7 @@ const express = require('express');
 const { User } = require('../models');
 const router = express.Router();
 
-
-
-// POST Route For User Login
+// POST ROUTES
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne({ where: { email: req.body.email } });
@@ -12,8 +10,6 @@ router.post('/login', async (req, res) => {
         if (!userData || !userData.checkPassword(req.body.password)) {
             res.status(400).json({ message: 'Invalid email or password' });
             return;
-        } else {
-            console.log('Welcome back! You are now logged in.');
         }
 
         req.session.save(() => {
@@ -23,13 +19,10 @@ router.post('/login', async (req, res) => {
         });
     } catch (err) {
         console.log(err);
-        res.status(500).json({ message: 'Failed to login' });
+        res.status(400).json({ message: 'Failed to login' });
     }
 });
 
-
-
-// POST Route For User Registration Form Submission Handling
 router.post('/signup', async (req, res) => {
     try {
         // Extract User Input From the Registration Form
@@ -58,21 +51,10 @@ router.post('/signup', async (req, res) => {
         res.status(201).json({ message: 'User registered successfully', user: newUser });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Failed to register user' });
+        res.status(400).json({ message: 'Failed to register user' });
     }
 });
 
-
-// GET Route For User Login Form View Rendering
-router.get('/login', (req, res) => {
-    res.render('login', { loggedIn: req.session.loggedIn });
-});
-
-router.get('/createaccount', (req, res) => {
-    res.render('signup');
-});
-
-// POST Route For User Logout
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
@@ -81,6 +63,15 @@ router.post('/logout', (req, res) => {
     } else {
         res.status(404).end();
     }
+});
+
+// GET ROUTES
+router.get('/login', (req, res) => {
+    res.render('login', { loggedIn: req.session.loggedIn });
+});
+
+router.get('/createaccount', (req, res) => {
+    res.render('signup');
 });
 
 module.exports = router;
