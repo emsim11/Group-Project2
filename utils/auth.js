@@ -1,9 +1,11 @@
+/* Middleware To Check Login – If Logged In, Continues to 
+Next Router or Middleware, Otherwise Sends to Login Page */
+
 const withAuth = (req, res, next) => {
-    // If User Isn't Logged In, Redirect Request to Login Route
-    if (!req.session.logged_in) {
-      res.redirect('/login');
-    } else {
+    if (req.session.logged_in) {
       next();
+    } else {
+      res.redirect('/login');
     }
 };
   

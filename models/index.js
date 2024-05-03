@@ -1,16 +1,16 @@
 // Import Modules
-const sequelize = require('../config/connection');
 const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-const Exercise = require('./Exercise');
-const Equipment = require('./Equipment');
-const Muscle = require('./Muscle');
-const Rep = require('./Rep');
-const Weight = require('./Weight');
 const Category = require('./Category');
 const Date = require('./Date');
-const WorkoutPlan = require('./WorkoutPlan');
+const Equipment = require('./Equipment');
+const Exercise = require('./Exercise');
+const Muscle = require('./Muscle');
+const Rep = require('./Rep');
 const User = require('./User')
+const Weight = require('./Weight');
+const WorkoutPlan = require('./WorkoutPlan');
 
 // JOIN TABLES:
 const ExerciseEquipment = sequelize.define('ExerciseEquipment', { });

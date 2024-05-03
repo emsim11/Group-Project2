@@ -4,11 +4,23 @@ let calendarMonth = dayjs().month(); // Initialize calendarMonth with the curren
 let calendarYear = dayjs().year(); // Initialize calendarYear with the current year
 
 // DOM Element References
-const calendarDay = document.querySelector('.cal-dates');
-const calendarCurrentDate = document.querySelector('.cal-current-date');
-const prevButton = document.getElementById('cal-prev');
-const nextButton = document.getElementById('cal-next');
-const todayButton = document.getElementById('today-button');
+const firstName = document.getElementById('First-Name');
+const calendarDay = document.querySelector('.Calendar-Dates');
+const calendarCurrentDate = document.querySelector('.Calendar-Current-Date');
+const prevButton = document.getElementById('Calendar-Previous');
+const nextButton = document.getElementById('Calendar-Next');
+const todayButton = document.getElementById('Today-Button');
+
+// Get First Name
+fetch('userData.json')
+  .then(response => response.json())
+  .then(data => {
+    data.forEach(User => {
+      const firstName = User.first_name;
+      console.log(firstName);
+    });
+  })
+  .catch(error => console.error('Error (userData.json):', error));
 
 // Quotable API Random Quote
 $.get('https://api.quotable.io/random', function(data) {
@@ -17,7 +29,7 @@ $.get('https://api.quotable.io/random', function(data) {
 }, 'json');
 
 // DayJS Display Date & Time
-$('#currentDate').html(dayjs().format('dddd, MMMM D, YYYY, h:mm a'));
+$('#Current-Date').html(dayjs().format('dddd, MMMM D, YYYY, h:mm a'));
 
 // Interactive Calendar
 const updateCalendar = () => {

@@ -1,7 +1,9 @@
-const { DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-const Exercise = sequelize.define('Exercise', {
+class Exercise extends Model {}
+
+Exercise.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -36,6 +38,7 @@ const Exercise = sequelize.define('Exercise', {
     timestamps: false,
     freezeTableName: true,
     underscored: true,
+    modelName: 'exercise'
 });
 
 Exercise.associate = (models) => {
