@@ -5,8 +5,6 @@ const withAuth = require('../../utils/auth');
 require('dotenv').config();
 
 // GET ROUTES - READ
-
-
 router.get('/exercises', withAuth, async (req, res) => {
   try {
     const exercises = await Exercise.find({});
@@ -16,9 +14,10 @@ router.get('/exercises', withAuth, async (req, res) => {
   }
 });
 
-router.get('/categories', withAuth, async (req, res) => {
+// Add Back in withAuth
+router.get('/categories', async (req, res) => {
   try {
-    const categories = await Category.find({});
+    const categories = await Category.findAll({});
     res.json(categories);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -27,16 +26,17 @@ router.get('/categories', withAuth, async (req, res) => {
 
 router.get('/muscles', withAuth, async (req, res) => {
   try {
-    const muscles = await Muscle.find({});
+    const muscles = await Muscle.findAll({});
     res.json(muscles);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-router.get('/equipment', withAuth, async (req, res) => {
+// Add Back in withAuth
+router.get('/equipment', async (req, res) => {
   try {
-    const equipment = await Equipment.find({});
+    const equipment = await Equipment.findAll({});
     res.json(equipment);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -45,7 +45,7 @@ router.get('/equipment', withAuth, async (req, res) => {
 
 router.get('/reps', withAuth, async (req, res) => {
   try {
-    const reps = await Rep.find({});
+    const reps = await Rep.findAll({});
     res.json(reps);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -54,7 +54,7 @@ router.get('/reps', withAuth, async (req, res) => {
 
 router.get('/weights', withAuth, async (req, res) => {
   try {
-    const weights = await Weight.find({});
+    const weights = await Weight.findAll({});
     res.json(weights);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -63,7 +63,7 @@ router.get('/weights', withAuth, async (req, res) => {
 
 router.get('/workouts', withAuth, async (req, res) => {
   try {
-    const workouts = await WorkoutPlan.find({});
+    const workouts = await WorkoutPlan.findAll({});
     res.json(workouts);
   } catch (err) {
     res.status(500).json({ message: err.message });

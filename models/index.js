@@ -10,6 +10,7 @@ const Weight = require('./Weight');
 const Category = require('./Category');
 const Date = require('./Date');
 const WorkoutPlan = require('./WorkoutPlan');
+const User = require('./User')
 
 // JOIN TABLES:
 const ExerciseEquipment = sequelize.define('ExerciseEquipment', { });
@@ -38,4 +39,4 @@ Category.belongsToMany(Exercise, { through: ExerciseCategory });
 
 // Exercise Workout Plan
 
-module.exports = { Category, Date, Equipment, Exercise, Muscle, Rep, Weight, WorkoutPlan }
+module.exports = { Category, Date, Equipment, Exercise, Muscle, Rep, User, Weight, WorkoutPlan }
