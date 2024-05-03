@@ -1,7 +1,9 @@
-const { DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-const Weight = sequelize.define('Weight', {
+class Weight extends Model {}
+
+Weight.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -17,6 +19,7 @@ const Weight = sequelize.define('Weight', {
     timestamps: false,
     freezeTableName: true,
     underscored: true,
+    modelName: 'weight'
 });
 
 Weight.associate = (models) => {

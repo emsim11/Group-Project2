@@ -1,28 +1,32 @@
-<container id="Welcome">
-    <p>Welcome back to your fitness tracker, {{First_Name}}!</p>
+<container>
+    <p id="Welcome">Welcome back to your fitness tracker, <span id="First-Name">John</span>!</p>
     <!-- Quotable API Random Quote -->
     <p id="Quote"></p>
     <hr>
     <!-- Day.js Date -->
     <div class="Date">
         <p class="Date"><strong>Today's Date:</strong></p>
-        <p id="currentDate">{{format_date}}</p>
+        <p id="Current-Date">{{format_date}}</p>
     </div>
 </container>
 
 <!-- Calendar Container -->
-<div class="cal-container">
-    <div id="calendarBox">
-        <header class="cal-header">
-            <p class="cal-current-date"></p>
-            <div class="cal-nav">
-                <span id="cal-prev" class="material-symbols-rounded"><img class="Calendar-Nav-Button" src="/Assets/Images/icons/Previous-Arrow.svg" alt="Back-Button"></span>
-                <button id="today-button">Today</button>
-                <span id="cal-next" class="material-symbols-rounded"><img class="Calendar-Nav-Button" src="/Assets/Images/icons/Next-Arrow.svg" alt="Back-Button"></span>
+<div class="Calendar-Container">
+    <div id="Calendar-Box">
+        <header class="Calendar-Header">
+            <p class="Calendar-Current-Date"></p>
+            <div class="Calendar-Nav">
+                <span class="Calendar-Icon" id="Calendar-Previous">
+                    <i class="fa-solid fa-angle-left" style="color: #666666;"></i>
+                </span>
+                <button id="Today-Button">Today</button>
+                <span class="Calendar-Icon" id="Calendar-Next">
+                    <i class="fa-solid fa-angle-right" style="color: #666666;"></i>
+                </span>
             </div>
         </header>
-        <div class="cal-body">
-            <ul class="weekdays">
+        <div class="Calendar-Body">
+            <ul class="Weekdays">
                 <li>Sun</li>
                 <li>Mon</li>
                 <li>Tues</li>
@@ -31,7 +35,7 @@
                 <li>Fri</li>
                 <li>Sat</li>
             </ul>
-            <ul class="cal-dates">
+            <ul class="Calendar-Dates">
                 <!-- Your calendar dates will go here -->
             </ul>
         </div>

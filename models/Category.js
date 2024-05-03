@@ -1,7 +1,9 @@
-const { DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-const Category = sequelize.define('Category', {
+class Category extends Model {}
+
+Category.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -18,6 +20,7 @@ const Category = sequelize.define('Category', {
     timestamps: false,
     freezeTableName: true,
     underscored: true,
+    modelName: 'category'
 });
 
 Category.associate = (models) => {

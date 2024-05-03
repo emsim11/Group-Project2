@@ -19,13 +19,19 @@ header {
     background-color: var(--color-darkblue);
 }
 
+h1 {
+    text-align: center;
+    color: #fafafa;
+    font-size: 45px;
+    padding-bottom: 10px;
+}
+
 footer {
     text-align: center;
     border: 5px solid var(--color-darkblue);
     border-radius: 10px;
     margin: 5px;
     position: absolute;
-    bottom: 0;
     padding: 10px;
     background-color: var(--color-lightwhite);
     width: 100%;
@@ -157,31 +163,150 @@ footer {
     line-height: 1.5px;
     color: var(--color-darkgray);
 }
+
 /* Homepage */
-h1 {
-    text-align: center;
-    color: #fafafa;
-    font-size: 45px;
-    padding-bottom: 10px;
-}
 
 #Welcome {
     text-align: center;
-    background-color: #8ed6ee;
-    border-radius: 40%;
-    border: 2px solid #fafafa;
-    border-radius: 25px;
     font-size: 20px;
-    width: fit-content;
-    padding: 10px;
-    padding-right: 20px;
     padding-left: 20px;
     margin: 0 auto;
     font-weight: bold;
-    border: 2px solid #f0e6e3
 }
 
-/* Input Name Form Div */
+#Quote {
+    text-align: center;
+    font-size: 22px;
+    font-style: italic;
+    padding: 10px;
+    background-color: #f0e6e3;
+    border-radius: 10%;
+    border: 5px solid #427884;
+    margin: 10px;
+    background-color: #fafafa;
+    border: 2px solid #427884;
+    border-radius: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.Date {
+    font-size: 20px;
+    text-align: center;
+}
+
+p.Date {
+    text-align: center;
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+#Current-Date {
+    padding-bottom: 20px;
+}
+
+.Calendar-Container {
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 20px;
+    background-color: var(--color-lightwhite);
+}
+
+#Calendar-Box {
+    padding: 10px;
+    cursor: pointer;
+    font-family: Poppins;
+    box-shadow: 10px 5px 5px 5px grey;
+    border-radius: 15px;
+}
+
+.Calendar-Header {
+    background-color: #8ed6ee;
+    border: 2px solid #334A52;
+    font-family: Poppins-Medium;
+    padding: 10px;
+}
+
+header .Calendar-Current-Date {
+    font-size: xx-large;
+}
+
+header .Calendar-Nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .Calendar-Nav span {
+    width: 30px;
+    border: 2px solid #334A52;
+    border-radius: 50%;
+}
+
+header .Calendar-Nav span:hover {
+    background: white;
+}
+
+#Today-Button {
+    padding: 5px 20px 5px 20px;
+    border: 2px solid #334A52;
+    border-radius: 10px;
+}
+
+.Calendar-Body {
+    padding: 5px;
+}
+
+.Weekdays {
+    text-decoration: underline;
+    font-family: Poppins-Medium;
+    margin-right: 5px;
+}
+
+.Calendar-Body ul {
+    list-style: none;
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    padding-right: 2rem;
+}
+
+.Calendar-Body li {
+    width: calc(100% / 7);
+    font-size: 1.5rem;
+    color: black;
+}
+
+.Calendar-Body .Calendar-Dates li {
+    margin-top: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.Calendar-Dates li::before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.past:hover::before {
+    background-color: lightcoral;
+}
+
+.current-day::before {
+    background: greenyellow;
+}
+
+.future:hover::before {
+    background: lightgrey;
+}
+
 .User-Input {
     text-align: center;
 }
@@ -215,45 +340,11 @@ h1 {
     margin: 0;
 }
 
-/* Quote Display */
-#Quote {
-    text-align: center;
-    font-size: 22px;
-    font-style: italic;
-    padding: 10px;
-    background-color: #f0e6e3;
-    border-radius: 10%;
-    border: 5px solid #427884;
-    margin: 10px;
-    background-color: #fafafa;
-    border: 2px solid #427884;
-    border-radius: 20px;
-    margin-left: 15px;
-    margin-right: 15px;
-}
-
 /* Display Form & Calendar Side-by-Side */
 .Display-Container {
     display: flex;
     justify-content: center;
 }
-
-/* Date & Time Display */
-.Date {
-    font-size: 20px;
-    text-align: center;
-}
-
-p.Date {
-    text-align: center;
-    margin: 0;
-    padding-bottom: 10px;
-}
-
-#currentDate {
-    padding-bottom: 20px;
-}
-
 /* Exercise Form */
 .Form-Content {
     padding-right: 50px;
@@ -361,115 +452,6 @@ p.Date {
     margin-right: 10px;
     /* Add some spacing between checkbox and exercise name */
 
-}
-
-/* Calendar Display */
-#calendarBox {
-    clear: right;
-    background: #fafafa;
-    height: fit-content;
-    min-height: 400px;
-    padding: 10px;
-    cursor: pointer;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    box-shadow: 10px 5px 5px grey;
-    border-radius: 15px;
-}
-
-.cal-container {
-    width: 500px;
-}
-
-.cal-header {
-    background-color: #8ed6ee;
-    border: 2px solid #334A52;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-header .cal-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-header .cal-nav span {
-    height: 30px;
-    width: 30px;
-    border: 2px solid #334A52;
-    border-radius: 50%;
-}
-
-header .cal-nav span:hover {
-    background: white;
-}
-
-header .cal-current-date {
-    font-size: xx-large;
-    font-weight: 400;
-}
-#cal-prev {
-    vertical-align: -webkit-baseline-middle;
-}
-#today-button {
-    padding: 5px 20px 5px 20px;
-    border: 2px solid #334A52;
-    border-radius: 10px;
-}
-
-.weekdays {
-    text-decoration: underline;
-    font-weight: bold;
-}
-
-.cal-body {
-    padding: 30px;
-}
-
-.cal-body ul {
-    list-style: none;
-    display: flex;
-    text-align: center;
-    flex-wrap: wrap;
-}
-
-.cal-body .cal-dates {
-    margin-bottom: 20px;
-}
-
-.cal-body li {
-    width: calc(100% / 7);
-    font-size: 1.5rem;
-    color: black;
-}
-
-.cal-body .cal-dates li {
-    margin-top: 30px;
-    position: relative;
-    z-index: 1;
-}
-
-.cal-dates li::before {
-    position: absolute;
-    content: "";
-    top: 50%;
-    left: 50%;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-}
-
-.past:hover::before {
-    background-color: lightcoral;
-}
-
-.current-day::before {
-    background: greenyellow;
-}
-
-.future:hover::before {
-    background: lightgrey;
 }
 
 /* Workout Planner */

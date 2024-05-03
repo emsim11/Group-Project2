@@ -1,7 +1,9 @@
-const { DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-const Muscle = sequelize.define('Muscle', {
+class Muscle extends Model {}
+
+Muscle.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -39,6 +41,7 @@ const Muscle = sequelize.define('Muscle', {
     timestamps: false,
     freezeTableName: true,
     underscored: true,
+    modelName: 'muscle'
 });
 
 Muscle.associate = (models) => {

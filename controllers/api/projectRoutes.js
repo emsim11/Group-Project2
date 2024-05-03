@@ -1,3 +1,4 @@
+// TODO: Add Back in withAuth to Router Methods
 const router = require('express').Router();
 const { Category, Date, Equipment, Exercise, Muscle, Rep, User, Weight, WorkoutPlan } = require('../../models');
 const withAuth = require('../../utils/auth');
@@ -5,54 +6,70 @@ const withAuth = require('../../utils/auth');
 require('dotenv').config();
 
 // GET ROUTES - READ
-router.get('/exercises', withAuth, async (req, res) => {
-  try {
-    const exercises = await Exercise.find({});
-    res.json(exercises);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// Add Back in withAuth
 router.get('/categories', async (req, res) => {
   try {
     const categories = await Category.findAll({});
     res.json(categories);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/muscles', withAuth, async (req, res) => {
+router.get('/dates', async (req, res) => {
   try {
-    const muscles = await Muscle.findAll({});
-    res.json(muscles);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const dates = await Date.findAll({});
+    res.json(dates);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
-// Add Back in withAuth
 router.get('/equipment', async (req, res) => {
   try {
     const equipment = await Equipment.findAll({});
     res.json(equipment);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/reps', withAuth, async (req, res) => {
+router.get('/exercises', async (req, res) => {
+  try {
+    const exercises = await Exercise.find({});
+    res.json(exercises);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get('/muscles', async (req, res) => {
+  try {
+    const muscles = await Muscle.findAll({});
+    res.json(muscles);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get('/reps', async (req, res) => {
   try {
     const reps = await Rep.findAll({});
     res.json(reps);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/weights', withAuth, async (req, res) => {
+router.get('/users', async (req, res) => {
+  try {
+    const users = await User.findAll({});
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get('/weights', async (req, res) => {
   try {
     const weights = await Weight.findAll({});
     res.json(weights);
@@ -61,7 +78,7 @@ router.get('/weights', withAuth, async (req, res) => {
   }
 });
 
-router.get('/workouts', withAuth, async (req, res) => {
+router.get('/workouts', async (req, res) => {
   try {
     const workouts = await WorkoutPlan.findAll({});
     res.json(workouts);
@@ -71,16 +88,29 @@ router.get('/workouts', withAuth, async (req, res) => {
 });
 
 // POST ROUTES - CREATE
-router.post('/equipment', withAuth, async (req, res) => {
+router.post('/categories', async (req, res) => {
+  try {
+    const newCategory = await Category.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+
+    res.status(200).json(newCategory);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/equipment', async (req, res) => {
   try {
     const newEquipment = await Equipment.create({
       ...req.body,
-      user_id: req.session.user_id,
+      user_id: req.session.user_id
     });
 
     res.status(200).json(newEquipment);
-  } catch (err) {
-    res.status(500).json(err);
+  } catch (error) {
+    res.status(500).json(error);
   }
 });
 
