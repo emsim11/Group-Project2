@@ -45,10 +45,18 @@ var exeButton = $(".exerciseButton").on("click", function () {
         console.log(exerciseHeadingButton);
 
         // Function: Make "Exercises:" Heading in Checkbox Container On Click Go Back to Workout Choices
-        exerciseHeadingButton.addEventListener('click', function () {
-            console.log("Exercise heading button clicked.");
-            selectWorkoutForm.style.display = 'block'; // Show the Select Form
-            exercisesCheckboxContainer.style.display = 'none'; // Hide the Exercise List
+        document.addEventListener('DOMContentLoaded', function() {
+            const exerciseHeadingButton = document.getElementById('exerciseHeadingButton');
+            const selectWorkoutForm = document.getElementById('selectWorkoutForm');
+            const exercisesCheckboxContainer = document.getElementById('exercisesCheckboxContainer');
+        
+            if (exerciseHeadingButton && selectWorkoutForm && exercisesCheckboxContainer) {
+                exerciseHeadingButton.addEventListener('click', function () {
+                    console.log("Exercise heading button clicked.");
+                    selectWorkoutForm.style.display = 'block'; // Show the Select Form
+                    exercisesCheckboxContainer.style.display = 'none'; // Hide the Exercise List
+                });
+            }
         });
         var clonedExerciseListItem; // Declare Variable Outside Event Listener
 
@@ -141,11 +149,14 @@ document.addEventListener('DOMContentLoaded', function () {
     var startWorkoutButton = document.getElementById('startWorkout');
     var mainContent = document.getElementById('mainContent');
     var workoutPlanner = document.getElementById('workoutPlanner');
-    startWorkoutButton.addEventListener('click', function () {
-        mainContent.style.display = 'none';
-        workoutPlanner.style.display = 'block';
-        setInterval(setTime, 1000);
-    });
+
+    if (startWorkoutButton && mainContent && workoutPlanner) {
+        startWorkoutButton.addEventListener('click', function () {
+            mainContent.style.display = 'none';
+            workoutPlanner.style.display = 'block';
+            setInterval(setTime, 1000);
+        });
+    }
 });
 
 // Function: Display Workout Message Based On Workout Choice Made By User

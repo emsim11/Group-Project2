@@ -1,5 +1,7 @@
 // Global Variables
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let calendarMonth = dayjs().month(); // Initialize calendarMonth with the current month index
+let calendarYear = dayjs().year(); // Initialize calendarYear with the current year
 
 // DOM Element References
 const calendarDay = document.querySelector('.cal-dates');
@@ -20,25 +22,27 @@ $('#currentDate').html(dayjs().format('dddd, MMMM D, YYYY, h:mm a'));
 // Interactive Calendar
 const updateCalendar = () => {
     const today = dayjs();
-    const firstDay = new Date(calendarYear, calendarMonth, 1).getDay();
-    const lastDay = new Date(calendarYear, calendarMonth + 1, 0).getDate();
-    const lastDayName = new Date(calendarYear, calendarMonth, lastDay).getDay();
-    const monthLastDate = new Date(calendarYear, calendarMonth, 0).getDate();
+    const firstDay = dayjs(`${calendarYear}-${calendarMonth + 1}-01`).day(); // Get the day of the week for the first day of the month
+    const lastDay = dayjs(`${calendarYear}-${calendarMonth + 1}-01`).endOf('month').date(); // Get the last day of the month
+    const lastDayName = dayjs(`${calendarYear}-${calendarMonth + 1}-${lastDay}`).day(); // Get the day of the week for the last day of the month
 
     let calendarHTML = '';
 
+    // Generate HTML for days before the first day of the month
     for (let i = firstDay; i > 0; i--) {
-        calendarHTML += `<li class="inactive past">${monthLastDate - i}</li>`;
+        calendarHTML += `<li class="inactive past">${dayjs(`${calendarYear}-${calendarMonth + 1}-01`).subtract(i, 'day').date()}</li>`;
     }
 
+    // Generate HTML for the days of the current month
     for (let i = 1; i <= lastDay; i++) {
-        const date = dayjs(`${months[calendarMonth]} ${i}, ${calendarYear}`, 'MMMM D, YYYY');
+        const date = dayjs(`${calendarYear}-${calendarMonth + 1}-${i}`);
         const isToday = date.isSame(today, 'day') ? 'active current-day' : (date.isBefore(today, 'day') ? 'active past' : 'active future');
         calendarHTML += `<li class='${isToday}'>${i}</li>`;
     }
 
-    for (let i = lastDayName; i < 6; i++) {
-        calendarHTML +=`<li class='inactive future'>${i - lastDayName + 1}</li>`;
+    // Generate HTML for days after the last day of the month
+    for (let i = lastDayName + 1; i < 7; i++) {
+        calendarHTML += `<li class='inactive future'>${dayjs(`${calendarYear}-${calendarMonth + 1}-${lastDay}`).add(i - lastDayName, 'day').date()}</li>`;
     }
 
     calendarCurrentDate.innerText = `${months[calendarMonth]} ${calendarYear}`;
@@ -65,4 +69,11 @@ todayButton.addEventListener('click', () => {
         calendarYear = dayjs().year();
         updateCalendar();
     }
+});
+
+updateCalendar()
+
+// Redirect to the workoutPlanner.handlebars page when clicking on the calendar
+calendarDay.addEventListener('click', () => {
+    window.location.href = 'workoutPlanner.handlebars'; 
 });
