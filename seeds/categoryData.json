@@ -1,26 +1,34 @@
 [
     {
+        "id": "1",
         "name": "Abs"
     },
     {
+        "id": "2",
         "name": "Arms"
     },
     {
+        "id": "3",
         "name": "Back"
     },
     {
+        "id": "4",
         "name": "Calves"
     },
     {
+        "id": "5",
         "name": "Cardio"
     },
     {
+        "id": "6",
         "name": "Chest"
     },
     {
+        "id": "7",
         "name": "Legs"
     },
     {
+        "id": "8",
         "name": "Shoulders"
     }
 ]

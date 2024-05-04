@@ -1,5 +1,12 @@
 // TODO: Figure Out Which Code Applies and Update API Accordingly
+// DOM Element References
+const selectWorkoutForm = document.querySelector('.Select-Form');
 
+
+// Workout API Endpoints
+var workout_api = {
+    'category': 'http://localhost:3001/api/projects/equipment'
+}
 // Exercise Data (WGER API)
 var wgerEndpoints = { // JSON Object Containing API Endpoints
     'exercise': 'https://wger.de/api/v2/exercise/?limit=100&language=2',
@@ -37,7 +44,6 @@ var exeButton = $(".exerciseButton").on("click", function () {
 {
     document.addEventListener("DOMContentLoaded", function () {
         const exerciseListButtons = document.querySelectorAll('.workoutChoices li');
-        const selectWorkoutForm = document.querySelector('.selectForm');
         const exercisesCheckboxContainer = document.querySelector('.checkboxContainer');
         const exerciseList = document.querySelector("#exercise");
         const exerciseHeadingButton = document.querySelector('.Checkbox-Heading');

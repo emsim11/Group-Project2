@@ -87,5 +87,5 @@ updateCalendar()
 
 // Redirect to the workoutPlanner.handlebars page when clicking on the calendar
 calendarDay.addEventListener('click', () => {
-    window.location.href = 'workoutPlanner.handlebars'; 
+    window.location.href = '/workoutPlanner'; 
 });
