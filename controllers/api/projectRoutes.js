@@ -35,7 +35,7 @@ router.get('/equipment', async (req, res) => {
 
 router.get('/exercises', async (req, res) => {
   try {
-    const exercises = await Exercise.find({});
+    const exercises = await Exercise.findAll({});
     res.json(exercises);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -44,8 +44,9 @@ router.get('/exercises', async (req, res) => {
 
 router.get('/muscles', async (req, res) => {
   try {
-    const muscles = await Muscle.findAll({});
-    res.json(muscles);
+    const muscle = await Muscle.findAll({});
+    console.log('Muscles Found!');
+    res.json(muscle);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

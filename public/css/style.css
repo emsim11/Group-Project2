@@ -11,6 +11,7 @@
 * {
     margin: 0;
 }
+
 header {
     text-align: center;
     border: 2px solid var(--color-lightwhite);
@@ -151,6 +152,7 @@ footer {
     border: 0;
 }
 
+/* Signup Handlebars */
 .Container-Signup-Button {
     text-align: center;
     padding-top: 100px;
@@ -164,8 +166,7 @@ footer {
     color: var(--color-darkgray);
 }
 
-/* Homepage */
-
+/* Homepage Handlebars */
 #Welcome {
     text-align: center;
     font-size: 20px;
@@ -201,14 +202,18 @@ p.Date {
     padding-bottom: 10px;
 }
 
+.Display-Container {
+    display: flex;
+    justify-content: center;
+}
+
 #Current-Date {
     padding-bottom: 20px;
 }
 
 .Calendar-Container {
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-bottom: 20px;
+    padding-bottom: 50px;
+    width: 700px;
     background-color: var(--color-lightwhite);
 }
 
@@ -311,7 +316,38 @@ header .Calendar-Nav span:hover {
     text-align: center;
 }
 
-/* Submit Button */
+/* Workout Planner Handlebars */
+.Form-Content {
+    padding-right: 50px;
+    padding-left: 50px;
+    text-align: center;
+}
+
+.Form-Instructions {
+    padding: 5px;
+    font-size: 19px;
+    text-align: center;
+}
+
+.Select-Form {
+    background-color: #fafafa;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 15px;
+    box-shadow: 10px 5px 5px grey;
+    width: 475px;
+}
+
+.Exercise-Button {
+    background-color: #8ed6ee;
+    border-radius: .5em;
+    border: black;
+    font-size: 35px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 5px;
+}
+
 .Submit-Button {
     display: inline-block;
     border: none;
@@ -341,41 +377,9 @@ header .Calendar-Nav span:hover {
 }
 
 /* Display Form & Calendar Side-by-Side */
-.Display-Container {
-    display: flex;
-    justify-content: center;
-}
 /* Exercise Form */
-.Form-Content {
-    padding-right: 50px;
-    padding-left: 50px;
-    text-align: center;
-}
 
-.Form-Instructions {
-    padding: 5px;
-    font-size: 19px;
-    text-align: center;
-}
 
-.selectForm {
-    background-color: #fafafa;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 15px;
-    box-shadow: 10px 5px 5px grey;
-    width: 475px;
-}
-
-.exerciseButton {
-    background-color: #8ed6ee;
-    border-radius: .5em;
-    border: black;
-    font-size: 35px;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-bottom: 5px;
-}
 
 .workoutChoices {
     list-style: none;

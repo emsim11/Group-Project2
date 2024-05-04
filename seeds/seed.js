@@ -24,6 +24,12 @@ const seedDatabase = async () => {
         });
     }
     
+    for (const muscle of muscleData) {
+        await Muscle.create({
+            ...muscle,
+            User_Id: users[Math.floor(Math.random() * users.length)].User_Id,
+        });
+    }
     process.exit(0);
 };
 

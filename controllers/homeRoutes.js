@@ -13,16 +13,8 @@ router.get('/', withAuth, async (req, res) => {
     }
 });
 
-router.get('/homepage', withAuth, async(req, res) => {
-    try {
-        res.render('homepage', { username: req.session.username });
-    } catch (error) {
-        console.error('Error (homeRoutes.js):', error);
-        res.status(500).json({ message: 'Internal Server Error' });
-    }
-})
-    
-router.get('/loginpage', (req, res) => {
+
+router.get('/login', (req, res) => {
     res.render('login', { loggedIn: req.session.logged_in });
 });
 
@@ -34,31 +26,24 @@ router.get('/createaccount', (req, res) => {
     res.render('signup');
 });
 
-// POST ROUTES
-router.post('/', withAuth, async (req, res) => {
+router.get('/homepage', withAuth, async(req, res) => {
     try {
-        const { date, workoutPlan } = req.body;
-
-        await sequelize.transaction(async (t) => {
-            await WorkoutPlan.update(
-                { workoutPlan: workoutPlan },
-                { where: { date: date } },
-                { transaction: t }
-            );
-        });
-        
-        const updatedWorkoutPlans = await WorkoutPlan.findAll({ where: { date: date } });
-        
-        res.render('homepage', {
-            username: req.session.username,
-            workoutPlans: updatedWorkoutPlans
-        });
+        res.render('homepage', { username: req.session.username });
     } catch (error) {
         console.error('Error (homeRoutes.js):', error);
-        res.status(500).json({ message: 'Error Updating Workout Plans' });
+        res.status(500).json({ message: 'Internal Server Error' });
     }
+})
+
+router.get('/workoutplanner', (req, res) => {
+    res.render('workoutPlanner');
 });
 
+router.get('/workout', (req, res) => {
+    res.render('workout');
+});
+
+// POST ROUTES
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne({ where: { email: req.body.email } });
