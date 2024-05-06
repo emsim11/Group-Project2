@@ -156,8 +156,3 @@ const displayExerciseData = (data) => {
 BackToCalendarBtn.addEventListener('click', function() {
     window.location.href = '/homepage';
 });
-
-// Functions: Start Workout
-StartWorkoutBtn.addEventListener('click', function() {
-    window.location.href = '/workout';
-});
