@@ -13,16 +13,15 @@ router.get('/', withAuth, async (req, res) => {
     }
 });
 
-
 router.get('/login', (req, res) => {
     res.render('login', { loggedIn: req.session.logged_in });
 });
 
-router.get('/signup', (req, res) => {
-    res.render('signup');
+router.get('/loginpage', (req, res) => {
+    res.render('login', { loggedIn: req.session.logged_in });
 });
 
-router.get('/createaccount', (req, res) => {
+router.get('/signup', (req, res) => {
     res.render('signup');
 });
 

@@ -1,10 +1,14 @@
+const { json } = require("sequelize");
+
+
 const signupFormHandler = async (event) => {
     event.preventDefault();
-
+    
     const firstName = document.querySelector('#FirstName-Signup').value.trim();
     const lastName = document.querySelector('#LastName-Signup').value.trim();
     const email = document.querySelector('#Email-Signup').value.trim();
     const password = document.querySelector('#Password-Signup').value.trim();
+    const SignupBtn = document.getElementById('Submit-User-Button');
 
     if (firstName && lastName && email && password) {
         const response = await fetch('/signup', {
@@ -13,12 +17,20 @@ const signupFormHandler = async (event) => {
             headers: { 'Content-Type': 'application/json' },
         });
 
+        const responseData = await response.json();
+
         if (response.ok) {
             window.location.replace('/loginpage');
         } else {
-            alert(response.statusText);
+            if (responseData.error === 'User already exists') {
+                alert('User Already Exists');
+            } else {
+                alert('Error Creating User');
+            }
         }
-    }
+    };
+
+    SignupBtn.addEventListener('click', )
 };
 
 document

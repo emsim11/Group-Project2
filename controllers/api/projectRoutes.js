@@ -6,19 +6,19 @@ const withAuth = require('../../utils/auth');
 require('dotenv').config();
 
 // GET ROUTES - READ
-router.get('/categories', async (req, res) => {
+router.get('/category', async (req, res) => {
   try {
-    const categories = await Category.findAll({});
-    res.json(categories);
+    const category = await Category.findAll({});
+    res.json(category);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/dates', async (req, res) => {
+router.get('/date', async (req, res) => {
   try {
-    const dates = await Date.findAll({});
-    res.json(dates);
+    const date = await Date.findAll({});
+    res.json(date);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -33,63 +33,62 @@ router.get('/equipment', async (req, res) => {
   }
 });
 
-router.get('/exercises', async (req, res) => {
+router.get('/exercise', async (req, res) => {
   try {
-    const exercises = await Exercise.findAll({});
-    res.json(exercises);
+    const exercise = await Exercise.findAll({});
+    res.json(exercise);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/muscles', async (req, res) => {
+router.get('/muscle', async (req, res) => {
   try {
     const muscle = await Muscle.findAll({});
-    console.log('Muscles Found!');
     res.json(muscle);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/reps', async (req, res) => {
+router.get('/rep', async (req, res) => {
   try {
-    const reps = await Rep.findAll({});
-    res.json(reps);
+    const rep = await Rep.findAll({});
+    res.json(rep);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/users', async (req, res) => {
+router.get('/user', async (req, res) => {
   try {
-    const users = await User.findAll({});
-    res.json(users);
+    const user = await User.findAll({});
+    res.json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/weights', async (req, res) => {
+router.get('/weight', async (req, res) => {
   try {
-    const weights = await Weight.findAll({});
-    res.json(weights);
+    const weight = await Weight.findAll({});
+    res.json(weight);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-router.get('/workouts', async (req, res) => {
+router.get('/workout', async (req, res) => {
   try {
-    const workouts = await WorkoutPlan.findAll({});
-    res.json(workouts);
+    const workout = await WorkoutPlan.findAll({});
+    res.json(workout);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
 // POST ROUTES - CREATE
-router.post('/categories', async (req, res) => {
+router.post('/category', async (req, res) => {
   try {
     const newCategory = await Category.create({
       ...req.body,
@@ -97,6 +96,19 @@ router.post('/categories', async (req, res) => {
     });
 
     res.status(200).json(newCategory);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/date', async (req, res) => {
+  try {
+    const newDate = await Date.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+
+    res.status(200).json(newDate);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -115,7 +127,84 @@ router.post('/equipment', async (req, res) => {
   }
 });
 
-// Create Date
+router.post('/exercise', async (req, res) => {
+  try {
+    const newExercise = await Exercise.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+
+    res.status(200).json(newExercise);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/muscle', async (req, res) => {
+  try {
+    const newMuscle = await Muscle.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+
+    res.status(200).json(newMuscle);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/rep', async (req, res) => {
+  try {
+    const newRep = await Rep.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+
+    res.status(200).json(newRep);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/user', async (req, res) => {
+  try {
+    const newUser = await User.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+
+    res.status(200).json(newUser);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/weight', async (req, res) => {
+  try {
+    const newWeight = await Weight.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+
+    res.status(200).json(newWeight);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/workout', async (req, res) => {
+  try {
+    const newWorkout = await WorkoutPlan.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+
+    res.status(200).json(newWorkout);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 // Middleware to Create Exercises List
 // Create Workout Plan
 
