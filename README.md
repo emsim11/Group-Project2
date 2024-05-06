@@ -4,7 +4,7 @@ Group Project #1
 ## Links
 [Link to Deployed Application](https://paulrusz.github.io/Group-Project1/)
 
-[GitHub Repository](https://github.com/PaulRusz/Group-Project1)
+[GitHub Repository](https://github.com/emsim11/Group-Project2)
 
 ## User Story
 ```
@@ -81,7 +81,7 @@ The Workout Tracker is a web-based application designed to help users plan, trac
 - Bootstrap: Frontend framework for styling and layout components.
 - Day.js: Lightweight JavaScript date library for handling date and time calculations.
 - WGER API: Used for loading exercise list in Exercise Type Container
-- Quotable  API: Used for loading random quotes on webpage
+- Quotable API: Used for loading random quotes on webpage
 
 ## Usage
 1. Type the name you wish to use into the 'First Name' box to access the workout tracker.
@@ -106,7 +106,7 @@ This is the landing page for users who have visited before and have submitted th
 ![Landing Page For Returning Visitors](assets/images/WorkoutTracker2.png)
 
 ## Authors and Acknowledgement
-**Main Contributors:** [Emily Simone](https://github.com/emsim11), [Paul Ruszkay](https://github.com/PaulRusz), and [Tania Bezerra](https://github.com/nybrasil)
+**Main Contributors:** [Emily Simone](https://github.com/emsim11), [Paul Ruszkay](https://github.com/PaulRusz), [Tania Bezerra](https://github.com/nybrasil), and [Andrew Zubac](https://github.com/kitasauce).
 
 ## License
 This application is licensed under the MIT License - see the LICENSE file for details.

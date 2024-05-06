@@ -1,30 +1,28 @@
-// TODO: Add Back in withAuth to Router Methods
 const router = require('express').Router();
 const { Category, Date, Equipment, Exercise, Muscle, Rep, User, Weight, WorkoutPlan } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 require('dotenv').config();
 
+// TODO: Add Back in withAuth to Router Methods
+// NOTE: http://localhost:3001/api/projects/ is the URL Base Link
+
 // GET ROUTES - READ
-router.get('/categories', async (req, res) => {
+router.get('/category', async (req, res) => {
   try {
-    const categories = await Category.findAll({});
-    res.json(categories);
-
-    req.session.save(() => {
-      req.session.categories = categories;
-      res.status(200).json({ categories: categories, message: 'Categories Successful' });
-  });
-
+    const category = await Category.findAll({});
+    console.log('Categories Found!');
+    res.status(200).json({ category: category, message: 'Categories Retrieved Successfully!' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/dates', async (req, res) => {
+router.get('/date', async (req, res) => {
   try {
-    const dates = await Date.findAll({});
-    res.json(dates);
+    const date = await Date.findAll({});
+    console.log('Dates Found!');
+    res.status(200).json({ date: date, message: 'Dates Retrieved Successfully!' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -33,108 +31,102 @@ router.get('/dates', async (req, res) => {
 router.get('/equipment', async (req, res) => {
   try {
     const equipment = await Equipment.findAll({});
-    res.json(equipment);
+    console.log('Equipment Found!');
+    res.status(200).json({ equipment: equipment, message: 'Equipment Retrieved Successfully!' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/exercises', async (req, res) => {
+router.get('/exercise', async (req, res) => {
   try {
-    const exercises = await Exercise.findAll({});
-    res.json(exercises);
+    const exercise = await Exercise.findAll({});
+    console.log('Exercises Found!');
+    res.status(200).json({ exercise: exercise, message: 'Exercises Retrieved Successfully!' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/muscles', async (req, res) => {
+router.get('/muscle', async (req, res) => {
   try {
     const muscle = await Muscle.findAll({});
     console.log('Muscles Found!');
-    res.json(muscle);
+    res.status(200).json({ muscle: muscle, message: 'Muscles Retrieved Successfully!' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/reps', async (req, res) => {
+router.get('/rep', async (req, res) => {
   try {
-    const reps = await Rep.findAll({});
-    res.json(reps);
+    const rep = await Rep.findAll({});
+    console.log('Reps Found!');
+    res.status(200).json({ rep: rep, message: 'Reps Retrieved Successfully!' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/users', async (req, res) => {
+router.get('/user', async (req, res) => {
   try {
+    const user = await User.findAll({});
     console.log('Users Found!');
-    const users = await User.findAll();
-    // res.json(users);
-    res.status(200).json(users);
-    // console.log('HRE');
-    // console.log(users);
+    res.status(200).json({ user: user, message: 'Users Retrieved Successfully!' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/weights', async (req, res) => {
+router.get('/weight', async (req, res) => {
   try {
-    const weights = await Weight.findAll({});
-    res.json(weights);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const weight = await Weight.findAll({});
+    console.log('Weights Found!');
+    res.status(200).json({ weight: weight, message: 'Weights Retrieved Successfully!' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
-router.get('/workouts', async (req, res) => {
+router.get('/workout', async (req, res) => {
   try {
-    const workouts = await WorkoutPlan.findAll({});
-    res.json(workouts);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const workout = await WorkoutPlan.findAll({});
+    console.log('Workout Plans Found!');
+    res.status(200).json({ workout: workout, message: 'Workout Plans Retrieved Successfully!' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
 // POST ROUTES - CREATE
-router.post('/categories', async (req, res) => {
+router.post('/date', async (req, res) => {
   try {
-    const newCategory = await Category.create({
+    const newDate = await Date.create({
       ...req.body,
       user_id: req.session.user_id
     });
-
-    res.status(200).json(newCategory);
+    res.status(200).json({ newDate: newDate, message: 'New Date Has Been Created!' });
   } catch (error) {
     res.status(500).json(error);
   }
 });
 
-router.post('/equipment', async (req, res) => {
+router.post('/workout', async (req, res) => {
   try {
-    const newEquipment = await Equipment.create({
+    const newWorkout = await WorkoutPlan.create({
       ...req.body,
       user_id: req.session.user_id
     });
-
-    res.status(200).json(newEquipment);
+    res.status(200).json({ newWorkout: newWorkout, message: 'New Workout Plan Has Been Created!' });
   } catch (error) {
     res.status(500).json(error);
   }
 });
 
-// Create Date
-// Middleware to Create Exercises List
-// Create Workout Plan
-
-// PATCH ROUTES
+// PATCH ROUTES - UPDATE
 // Update Workout Plan
 
-// DELETE ROUTES
+// DELETE ROUTES - DELETE
 // Delete Workout Plan
-
-// Middleware to Get Workout Plan
 
 module.exports = router;

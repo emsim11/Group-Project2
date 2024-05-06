@@ -13,6 +13,10 @@ const Weight = require('./Weight');
 const WorkoutPlan = require('./WorkoutPlan');
 
 // JOIN TABLES:
+const ExerciseCategory = sequelize.define('ExerciseCategory', { });
+Exercise.belongsToMany(Category, { through: ExerciseCategory });
+Category.belongsToMany(Exercise, { through: ExerciseCategory });
+
 const ExerciseEquipment = sequelize.define('ExerciseEquipment', { });
 Exercise.belongsToMany(Equipment, { through: ExerciseEquipment });
 Equipment.belongsToMany(Exercise, { through: ExerciseEquipment });
@@ -28,10 +32,6 @@ Rep.belongsToMany(Exercise, { through: ExerciseRep });
 const ExerciseWeight = sequelize.define('ExerciseWeight', { });
 Exercise.belongsToMany(Weight, { through: ExerciseWeight });
 Weight.belongsToMany(Exercise, { through: ExerciseWeight });
-
-const ExerciseCategory = sequelize.define('ExerciseCategory', { });
-Exercise.belongsToMany(Category, { through: ExerciseCategory });
-Category.belongsToMany(Exercise, { through: ExerciseCategory });
 
 // Exercise User
 

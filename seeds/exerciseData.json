@@ -1,52 +1,71 @@
-{
-    "exercises": [
-        {
-            "name": "2 Handed Kettlebell Swing",
-            "description": "<p>Two Handed Russian Style Kettlebell swing</p>",
-            "image": "",
-            "Category": [
-                {
-                    "name": "Abs"
-                }
-            ],
-            "Equipment": [
-                {
-                    "name": "Kettlebell"
-                }
-            ],
-            "Muscle": []
-        },
-        {
-            "name": "3D Lunge Warmup",
-            "description": "As a warmup, use light dumbbells, one in each hand. Lunge in alternating directions, forward, sideways, backwards and 45 degree angles.",
-            "image": "",
-            "Category": [
-                {
-                    "name": "Cardio"
-                }
-            ],
-            "Equipment": [
-                {
-                    "name": "Dumbbell"
-                }
-            ],
-            "Muscle": []
-        },
-        {
-            "name": "",
-            "description": "",
-            "image": "",
-            "Category": [
-                {
-                    "name": ""
-                }
-            ],
-            "Equipment": [
-                {
-                    "name": ""
-                }
-            ],
-            "Muscle": []
-        }
-    ]
-}
+[
+    {
+        "name": "",
+        "description": "",
+        "image": "",
+        "Category": [
+            {
+                "id": "",
+                "name": ""
+            }
+        ],
+        "Equipment": [
+            {
+                "id": "",
+                "name": ""
+            }
+        ],
+        "Muscle": [
+            {
+                "id": "",
+                "name": ""
+            }
+        ]
+    },
+    {
+        "name": "2 Handed Kettlebell Swing",
+        "description": "<p>Two Handed Russian Style Kettlebell swing</p>",
+        "image": "",
+        "Category": [
+            {
+                "id": "1",
+                "name": "Abs"
+            }
+        ],
+        "Equipment": [
+            {
+                "id": "14",
+                "name": "Kettlebell"
+            }
+        ],
+        "Muscle": [
+            {
+                "id": "",
+                "name": ""
+            }
+        ]
+    },
+    {
+        "name": "3D Lunge Warmup",
+        "description": "As a warmup, use light dumbbells, one in each hand. Lunge in alternating directions, forward, sideways, backwards and 45 degree angles.",
+        "image": "",
+        "Category": [
+            {
+                "id": "5",
+                "name": "Cardio"
+            }
+        ],
+        "Equipment": [
+            {
+                "id": "11",
+                "name": "Dumbbell"
+            }
+        ],
+        "Muscle": [
+            {
+                "id": "",
+                "name": ""
+            }
+        ]
+    }
+]
