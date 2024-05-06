@@ -3,20 +3,7 @@ const { User, WorkoutPlan } = require('../models');
 const withAuth = require('../utils/auth');
 const bcrypt = require('bcrypt');
 
-// GET ROUTES
-// router.get('/users', async (req, res) => {
-//     try {
-//       console.log('Users Found!');
-//       const users = await User.findAll();
-//       // res.json(users);
-//       res.status(200).json(users);
-//       // console.log('HRE');
-//       // console.log(users);
-//     } catch (error) {
-//       res.status(500).json({ message: error.message });
-//     }
-//   });
-
+// GET ROUTES - READ
 router.get('/', withAuth, async (req, res) => {
     try {
         res.render('homepage', { username: req.session.username });
@@ -25,7 +12,6 @@ router.get('/', withAuth, async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
-
 
 router.get('/login', (req, res) => {
     res.render('login', { loggedIn: req.session.logged_in });
@@ -56,7 +42,7 @@ router.get('/workout', (req, res) => {
     res.render('workout');
 });
 
-// POST ROUTES
+// POST ROUTES - CREATE
 router.post('/login', async (req, res) => {
     try {
         console.log("INFO", req.body.email);
@@ -75,8 +61,8 @@ router.post('/login', async (req, res) => {
             req.session.logged_in = true;
             res.status(200).json({ user: userData, message: 'Login Successful' });
         });
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error);
         res.status(400).json({ message: 'Failed to Login' });
     }
 });
@@ -98,7 +84,7 @@ router.post('/signup', async (req, res) => {
             password: password
         });
 
-        res.redirect('/login'); // loginpage
+        res.redirect('/login');
 
     } catch (error) {
         console.error('Error (homeRoutes.js):', error);

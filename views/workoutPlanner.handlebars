@@ -1,26 +1,28 @@
 <div class="Display-Container">
     <div class="Form-Content">
-        <p class="Form-Instructions">What type of workouts would you like to complete today?</p>
+        <div id="Error-Message"></div>
+        <p class="Form-Instructions">Plan Your Workout Below!</p>
         <div class="Select-Form">
-            <button class="Exercise-Button">Choose an Exercise Type</button><br>
-            <ul id="workoutChoices" style="visibility: hidden;">
-               <!-- Workout Category Options Will Populate Here -->
-            </ul>
-        </div>
-        <!-- Exercise Checkbox Container -->
-        <div class="checkboxContainer">
-            <button class="Checkbox-Heading">Exercises:</button>
-            <ul id="exercise">
-            </ul>
-            <!-- Start Workout Button -->
-            <button id="startWorkout">Begin Workout</button>
+            <container id="Category-Button">
+                <button class="Category-Button">Choose an Exercise Category</button><br>
+            </container>
+            <div id="Categories-Choices">
+               <!-- Workout Category Options Will Populate Here (Class='Category-Buttons') -->
+            </div>
+            <container id="Exercise-Button">
+                <button class="Exercise-Button">Select Your Exercises</button><br>
+            </container>
+            <div id="Exercise-Choices">
+                <!-- Exercises For Selected Category Will Populate Here (Class='Exercise-Buttons') -->
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Back to Calendar Button -->
 <div>
-    <button id="backToCalendarBtn">Back to Calendar</button>
+    <button id="Back-To-Calendar-Button">Back to Calendar</button>
 </div>
+
+<button id="Start-Workout">Start Workout</button>
 
 <script src="./js/workoutPlanner.js"></script>

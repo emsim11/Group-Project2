@@ -1,32 +1,42 @@
 [
     {
+        "id": "9",
         "name": "Barbell"
     },
     {
-        "name": "Bench"
+        "id": "10",
+        "name": "Workout Bench"
     },
     {
+        "id": "11",
         "name": "Dumbbell"
     },
     {
+        "id": "11",
         "name": "Exercise Ball"
     },
     {
+        "id": "12",
         "name": "Gym Mat"
     },
     {
+        "id": "13",
         "name": "Incline Bench"
     },
     {
+        "id": "14",
         "name": "Kettlebell"
     },
     {
+        "id": "15",
         "name": "Pull-Up Bar"
     },
     {
+        "id": "16",
         "name": "SZ-Bar"
     },
     {
+        "id": "17",
         "name": "None (Bodyweight Exercise)"
     }
 ]

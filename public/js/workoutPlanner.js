@@ -1,277 +1,158 @@
-// TODO: Figure Out Which Code Applies and Update API Accordingly
 // DOM Element References
+const ErrorMessageEl = document.getElementById('Error-Message');
 const selectWorkoutForm = document.querySelector('.Select-Form');
-
+const CategoryBtn = document.querySelector('.Category-Button');
+const ExerciseBtn = document.querySelector('.Exercise-Button');
+const CategoryBtnContainer = document.getElementById('Category-Button')
+const ExerciseBtnContainer = document.getElementById('Exercise-Button');
+const CategoriesChoicesList = document.getElementById('Categories-Choices');
+const ExerciseChoicesList = document.getElementById('Exercise-Choices');
+const BackToCalendarBtn = document.getElementById('Back-To-Calendar-Button');
+const StartWorkoutBtn = document.getElementById('Start-Workout');
 
 // Workout API Endpoints
-var workout_api = {
-    'category': 'http://localhost:3001/api/projects/equipment'
+var WorkoutAPIEndpoints = {
+    'Category': 'http://localhost:3001/api/projects/category',
+    'Equipment': 'http://localhost:3001/api/projects/equipment',
+    'Exercise': 'http://localhost:3001/api/projects/exercise',
+    'Muscle': 'http://localhost:3001/api/projects/muscle',
+    'Rep': 'http://localhost:3001/api/projects/rep',
+    'Weight': 'http://localhost:3001/api/projects/weight'
 }
-// Exercise Data (WGER API)
-var wgerEndpoints = { // JSON Object Containing API Endpoints
-    'exercise': 'https://wger.de/api/v2/exercise/?limit=100&language=2',
-    'exercisecategory': 'https://wger.de/api/v2/exercisecategory/?',
-    'exerciseimage': 'https://wger.de/api/v2/exerciseimage/?',
-    'exerciseinfo': 'https://wger.de/api/v2/exerciseinfo/?'
-};
-
-
-const workoutChoicesList = document.getElementById('workoutChoices');
-
-// const categories = fetch('/api/projects/categories')
-//     .then(response => response.json())
-//     .then(data => console.log(data))
-//     // .then(user => {
-//     //     req.session.save(() => {
-//     //         req.session.user = user;
-//     //     });
-//     // })
-//     .catch(error => console.error('Error (categoriesData.json):', error));
-
-
-// Function: Fetch WGER Data Endpoints
-function fetchExercises() {
-    return fetchDataFromEndpoint('exercise');
-};
 
 // Function: Fetch Data From a Specific Endpoint
-function fetchDataFromEndpoint(endpointKey, params) {
-    var endpoint = wgerEndpoints[endpointKey];
-    if (params) {
-        endpoint += "&" + params;
-    }
+function fetchDataFromEndpoint(endpoint) {
     return fetch(endpoint)
-        .then(function (resp) { return resp.json() });
-};
-
-// Function: Run Console Log to Ensure API Works
-function fetchCategories() {
-    fetchExercises().then(function (data) { console.log(data) });
-    fetch("https://wger.de/api/v2/exercisecategory/")
-        .then(function (resp) { return resp.json(); })
-        .then(function (data) { 
-            console.log(data); 
-            return data; 
-        })
-        .then(data => {
-                data.results.forEach(category => {
-    
-                // Create a list item element
-                const listItem = document.createElement('li');
-    
-                // Create a button element
-                const button = document.createElement('button');
-    
-                // Set the button text to the item
-                button.textContent = category.name;
-    
-                // // Add an event listener to the button
-                button.addEventListener('click', function () {
-                    console.log(`Button for ${category.name} was clicked`);
-                });
-    
-                // Add the button to the list item
-                listItem.appendChild(button);
-    
-                // Add the list item to the list
-                workoutChoicesList.appendChild(listItem);
-
-                // return workoutChoicesList;
-                return listItem;
-    
-                // let li = document.createElement('li');
-                // li.innerText = category.name;
-                // workoutChoicesList.appendChild(li);
-            });
-        });
-};
-
-//     // .then(function (data) { document.getElementById('workoutChoices').innerHTML = data.results; })
-
-
-// Function: Display Workout Choices
-var exeButton = $(".Exercise-Button").on("click", function () {
-    workoutChoicesList.style.visibility = 'visible';
-    // $(".workoutChoices").css("visibility", "visible");
-    console.log("HERE");
-});
-
-{
-    document.addEventListener("DOMContentLoaded", function () {
-        const workoutChoicesListButtons = fetchCategories();
-        // const exerciseListButtons = document.querySelectorAll('.workoutChoices li');
-        // console.log(exerciseListButtons);
-        const exercisesCheckboxContainer = document.querySelector('.checkboxContainer');
-        const exerciseList = document.querySelector("#exercise");
-        const exerciseHeadingButton = document.querySelector('.Checkbox-Heading');
-        const formInstructions = document.querySelector('.Form-Instructions');
-        // console.log(exerciseHeadingButton);
-
-        // Function: Make "Exercises:" Heading in Checkbox Container On Click Go Back to Workout Choices
-        document.addEventListener('DOMContentLoaded', function() {
-            const exerciseHeadingButton = document.getElementById('exerciseHeadingButton');
-            const selectWorkoutForm = document.getElementById('selectWorkoutForm');
-            const exercisesCheckboxContainer = document.getElementById('exercisesCheckboxContainer');
-        
-            if (exerciseHeadingButton && selectWorkoutForm && exercisesCheckboxContainer) {
-                exerciseHeadingButton.addEventListener('click', function () {
-                    console.log("Exercise heading button clicked.");
-                    selectWorkoutForm.style.display = 'block'; // Show the Select Form
-                    exercisesCheckboxContainer.style.display = 'none'; // Hide the Exercise List
-                });
-            }
-        });
-        var clonedExerciseListItem; // Declare Variable Outside Event Listener
-        console.log("BUTTONS TO BE UPDATE");
-        // Function: Display Exercise List With Checkboxes When a Workout Choice is Made in WorkoutChoices Menu
-        workoutChoicesListButtons.forEach(function (button) {
-            button.addEventListener('click', function (event) {
-                console.log(event.target.dataset.category);
-                document.querySelector('.workoutChoices').style.visibility = 'hidden'; // Hide the Workout Types List
-                exercisesCheckboxContainer.style.visibility = 'visible'; // Show the Checkbox Container
-                selectWorkoutForm.style.display = 'none'; // Hide Select Form
-                exercisesCheckboxContainer.style.display = 'block'; // Show Checkbox Container
-                fetchDataFromEndpoint("exercise", "category=" + event.target.dataset.category).then(function (response) { // Populate Checkbox Container With Relevant Workouts
-                    var exercises = response.results;
-                    console.log(exercises);
-                    for (let i = 0; i < exercises.length; i += 1) {
-                        let exercise = exercises[i];
-                        console.log(exercise);
-                        let exerciseListItem = document.createElement("li");
-                        let exerciseListItemBox = document.createElement("input");
-                        exerciseListItemBox.setAttribute("type", "checkbox"); // Set Type Attribute For Checkbox
-                        exerciseListItemBox.setAttribute("value", exercise.name); // Set Value Attribute For Checkbox
-                        exerciseListItem.appendChild(exerciseListItemBox); // Append Checkbox to List Item
-
-                        // Function: Closure to Capture Correct Exercise Item
-                        (function (exerciseItem) {
-                            clonedExerciseListItem;
-                            var userExerciseList = document.getElementById('exerciseList');
-                            exerciseListItemBox.addEventListener('change', function () {
-
-                                // Function: Add Selected Exercises to Workout Planner exerciseList
-                                if (exerciseListItemBox.checked) {
-                                    console.log(exerciseListItemBox);
-                                    var exerciseListItemWithoutCheckbox = document.createElement('li');
-                                    var exerciseNameWithoutCheckbox = document.createTextNode(exercise.name);
-                                    exerciseListItemWithoutCheckbox.appendChild(exerciseNameWithoutCheckbox);
-
-                                    // Function: Create a Text Input For Entering Time or Reps For Each Selected Exercise
-                                    var timeRepsInput = document.createElement('input');
-                                    timeRepsInput.setAttribute('type', 'text');
-                                    timeRepsInput.setAttribute('placeholder', 'Time/Reps');
-
-                                    // Function: Create a Checkbox For Completion Status For Each Selected Exercise
-                                    var completionCheckbox = document.createElement('input');
-                                    completionCheckbox.setAttribute('type', 'checkbox');
-                                    completionCheckbox.setAttribute('id', 'completionCheckbox');
-                                    var completionLabel = document.createElement('label');
-                                    completionLabel.setAttribute('for', 'completionCheckbox');
-                                    completionLabel.textContent = "Completed";
-
-                                    // Functiion: Append Input and Checkbox Elements to the Workout Planner
-                                    exerciseListItemWithoutCheckbox.appendChild(timeRepsInput);
-                                    exerciseListItemWithoutCheckbox.appendChild(completionCheckbox);
-                                    exerciseListItemWithoutCheckbox.appendChild(completionLabel);
-                                    userExerciseList.appendChild(exerciseListItemWithoutCheckbox); // Append Exercise Name Without Checkbox to Workout Planner
-
-                                } else {
-                                    if (clonedExerciseListItem) {
-                                        clonedExerciseListItem.remove(); // Remove exerciseListItem From the workoutPlanner if the Checkbox is Unchecked
-                                    }
-                                };
-                            });
-                        })(exercise);
-
-                        var exerciseName = document.createTextNode(exercise.name); // Create Text Node For Exercise Name
-                        exerciseListItem.appendChild(exerciseName); // Append Exercise Name to List Item
-                        exerciseList.appendChild(exerciseListItem); // Append List Item to Exercise List
-                    };
-                    formInstructions.style.display = 'none'; // Hide Form Instructions Once the Checkbox Items Have Appeared
-
-
-                });
-            });
-        });
-        console.log("BUTTONS UPDATED");
-
-
-        // Function: Use the "Exercise" Button to Go Back to Exercise Types
-        const checkboxHeadingButton = document.getElementById('checkbox-heading-button');
-        if (checkboxHeadingButton) {
-            checkboxHeadingButton.addEventListener('click', () => {
-                const selectWorkoutForm = document.querySelector('.selectForm');
-                if (selectForm) {
-                    selectWorkoutForm.scrollIntoView({ behavior: 'smooth' });
-                };
-            });
-        }
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('Failed to Fetch Data');
+    }
+    return response.json();
+    })
+    .catch(error => {
+    console.error(`Error Fetching Data from ${endpoint}:`, error);
+    throw error;
     });
+}
+
+// Function: Show/Hide Error Message
+const showFetchErrorMessage = (error) => {
+    ErrorMessageEl.textContent = 'An error occurred: ' + error.message;
+    ErrorMessageEl.style.display = 'block';
+    console.error('Error Fetching Data:', error);
+}
+
+const hideFetchErrorMessage = () => {
+    ErrorMessageEl.textContent = '';
+    ErrorMessageEl.style.display = 'none';
+}
+
+// Functions: Fetch API Data From Endpoints
+const Exercises = () => {
+    return fetchDataFromEndpoint(WorkoutAPIEndpoints.Exercise);
 };
 
-// Function: "Begin Workout" Button To Display Workout Planner
-document.addEventListener('DOMContentLoaded', function () {
-    var startWorkoutButton = document.getElementById('startWorkout');
-    var mainContent = document.getElementById('mainContent');
-    var workoutPlanner = document.getElementById('workoutPlanner');
+const Categories = () => {
+    return fetchDataFromEndpoint(WorkoutAPIEndpoints.Category);
+};
 
-    if (startWorkoutButton && mainContent && workoutPlanner) {
-        startWorkoutButton.addEventListener('click', function () {
-            mainContent.style.display = 'none';
-            workoutPlanner.style.display = 'block';
-            setInterval(setTime, 1000);
-        });
+const ExerciseCategories = async (category) => {
+    const EncodedCategory = encodeURIComponent(category);
+    const ExerciseCategory = `http://localhost:3001/api/projects/exercise?category=${EncodedCategory}`;
+
+    try {
+        const ExerciseCategoriesData = await fetch(ExerciseCategory).then(res => res.json());
+        const CategoryNames = ExerciseCategoriesData.map(category => category.name);
+        displayExerciseData(CategoryNames);
+        hideFetchErrorMessage();
+    } catch (error) {
+        console.error('Error Fetching Exercises by Category:', error);
+        showFetchErrorMessage(error);
+    }
+};
+
+const fetchExercisesForCategory = (selectedCategory) => {
+    return async () => {
+        try {
+            const CategoryNames = await ExerciseCategories(selectedCategory);
+            displayExerciseData(CategoryNames);
+            hideFetchErrorMessage;
+        } catch (error) {
+            console.error('Error Fetching Exercises by Category:', error);
+            showFetchErrorMessage(error);
+        }
+        CategoriesChoicesList.innerHTML = '';
+    };
+};
+
+// Functions: Categories List
+CategoryBtn.addEventListener('click', async () => {
+    console.log('CategoryBtn was clicked!');
+    try {
+        const CategoryData = await Categories();
+        displayCategoryData(CategoryData);
+        hideFetchErrorMessage();
+    } catch (error) {
+        console.error('Error Fetching Categories:', error);
+        showFetchErrorMessage(error);
     }
 });
 
-// Function: Display Workout Message Based On Workout Choice Made By User
-const workoutChoicesCategories = document.querySelectorAll('.workoutChoices li'); // Get List of Workout Choices
-workoutChoicesCategories.forEach(item => { // Add Click Event Listener to Each List Item
-    item.addEventListener('click', function () {
-        const selectedCategory = item.textContent.trim(); // Get Text Content of Clicked Item
-        console.log(selectedCategory);
-        const workoutMessage = document.getElementById('workoutMessage'); // Update Workout Message Based On Selected Workout Category
-        switch (selectedCategory) {
-            case 'Complete Arm Workout':
-                workoutMessage.textContent = 'Today is Arm Day - Get those biceps pumping!';
-                break;
-            case 'Leg Workout':
-                workoutMessage.textContent = 'Today is Leg Day - Strengthen those legs!';
-                break;
-            case 'Calves Workout':
-                workoutMessage.textContent = 'Today is Calves Day - Tone those calves!';
-                break;
-            case 'Upper Body Workout':
-                workoutMessage.textContent = 'Today is Upper Body Day - Build a strong upper body!';
-                break;
-            case 'Back Workout':
-                workoutMessage.textContent = 'Today is Back Day - Strengthen your back!';
-                break;
-            case 'Shoulder Workout':
-                workoutMessage.textContent = 'Today is Shoulder Day - Bulk up your shoulders!';
-                break;
-            case 'Ab Workout':
-                workoutMessage.textContent = 'Today is Ab Day - Work on those core muscles!';
-                break;
-            case 'Cardio Workout':
-                workoutMessage.textContent = 'Today is Cardio Day - Get your heart pumping with these cardio workouts!';
-                break;
-            case 'Rest Day':
-                workoutMessage.textContent = 'Today is Rest Day - Relax, recover, and reward yourself!';
-                break;
-            default:
-                workoutMessage.textContent = 'Your Workout List:';
-        };
+const displayCategoryData = (data) => {
+    console.log('Displaying Category Data:', data);
+    CategoriesChoicesList.innerHTML = '';
+    
+    data.category.forEach(category => {
+        const CategoryChoicesBtn = document.createElement('button');
+        CategoryChoicesBtn.textContent = category.name;
+        CategoryChoicesBtn.classList.add('Category-Buttons');
+        CategoryChoicesBtn.addEventListener('click', () => {
+            console.log('CategoryChoicesBtn was clicked!');
+            fetchExercisesForCategory(category.name)();
+        });
+        CategoriesChoicesList.appendChild(CategoryChoicesBtn);
     });
-});
+};
 
+const CategoryButtons = (data) => {
+    document.body.querySelectorAll('.Category-Buttons').forEach(button => button.remove());
+    data.forEach(category => {
+        const CategoryChoicesBtn = document.createElement('button');
+        CategoryChoicesBtn.textContent = category.name;
+        CategoryChoicesBtn.addEventListener('click', fetchExercisesForCategory(category));
+        document.body.appendChild(CategoryChoicesBtn);
+    });
+};
 
+// Functions: Exercise List
+const ExerciseButtons = (data) => {
+    document.body.querySelectorAll('.Exercise-Buttons').forEach(button => button.remove());
+    data.forEach(exercise => {
+        const ExerciseChoicesBtn = document.createElement('button');
+        ExerciseChoicesBtn.textContent = exercise.name;
+        ExerciseChoicesBtn.addEventListener('click', )
+    })
+}
 
-// Select the Back to Calendar button
-const backToCalendarBtn = document.getElementById('backToCalendarBtn');
+const displayExerciseData = (data) => {
+    console.log('Displaying Exercises:', data);
+    ExerciseChoicesList.innerHTML = '';
 
-// Add event listener to the button
-backToCalendarBtn.addEventListener('click', function() {
-    // Navigate back to the homepage
-    window.location.href = '/homepage'; // Update the URL to match your homepage URL
+    data.forEach((exercise) => {
+        const ExerciseChoicesBtn = document.createElement('button');
+        ExerciseChoicesBtn.textContent = exercise.name;
+        ExerciseChoicesBtn.classList.add('Exercise-Buttons');
+        ExerciseChoicesBtn.addEventListener('click', () => {
+            console.log('ExerciseBtn was clicked!');
+            fetchExercisesForCategory(exercise.name)();
+        });
+        ExerciseChoicesList.appendChild(ExerciseChoicesBtn)
+    })
+    CategoryBtnContainer.display = 'none';
+    ExerciseBtnContainer.display = 'block';
+};
+
+// Functions: Back to Homepage
+BackToCalendarBtn.addEventListener('click', function() {
+    window.location.href = '/homepage';
 });
