@@ -72,3 +72,28 @@ workoutChoicesCategories.forEach(item => { // Add Click Event Listener to Each L
         };
     });
 });
+
+const API_KEY = 'AIzaSyDM9h_H6uJNcWntAN4e30DTWXICQr-NggI';
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const genAI = new GoogleGenerativeAI(API_KEY);
+
+const userInput = document.getElementById('userInput');
+const searchButton = document.getElementById('searchButton');
+const resultsDiv = document.getElementById('results');
+
+searchButton.addEventListener('click', async () => {
+    const prompt = userInput.value.trim();
+
+    try {
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
+        
+        // Display the generated text in the results div
+        resultsDiv.textContent = text;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
+
