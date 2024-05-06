@@ -4,6 +4,19 @@ const withAuth = require('../utils/auth');
 const bcrypt = require('bcrypt');
 
 // GET ROUTES
+// router.get('/users', async (req, res) => {
+//     try {
+//       console.log('Users Found!');
+//       const users = await User.findAll();
+//       // res.json(users);
+//       res.status(200).json(users);
+//       // console.log('HRE');
+//       // console.log(users);
+//     } catch (error) {
+//       res.status(500).json({ message: error.message });
+//     }
+//   });
+
 router.get('/', withAuth, async (req, res) => {
     try {
         res.render('homepage', { username: req.session.username });
@@ -28,7 +41,7 @@ router.get('/createaccount', (req, res) => {
 
 router.get('/homepage', withAuth, async(req, res) => {
     try {
-        res.render('homepage', { username: req.session.username });
+        res.render('homepage', { user: req.session.user });
     } catch (error) {
         console.error('Error (homeRoutes.js):', error);
         res.status(500).json({ message: 'Internal Server Error' });
@@ -46,6 +59,7 @@ router.get('/workout', (req, res) => {
 // POST ROUTES
 router.post('/login', async (req, res) => {
     try {
+        console.log("INFO", req.body.email);
         const userData = await User.findOne({ where: { email: req.body.email } });
         console.log(userData);
 
@@ -57,6 +71,7 @@ router.post('/login', async (req, res) => {
 
         req.session.save(() => {
             req.session.userId = userData.id;
+            req.session.user = userData;
             req.session.logged_in = true;
             res.status(200).json({ user: userData, message: 'Login Successful' });
         });
@@ -83,7 +98,7 @@ router.post('/signup', async (req, res) => {
             password: password
         });
 
-        res.redirect('/loginpage');
+        res.redirect('/login'); // loginpage
 
     } catch (error) {
         console.error('Error (homeRoutes.js):', error);

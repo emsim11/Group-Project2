@@ -14,7 +14,7 @@ const signupFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            window.location.replace('/loginpage');
+            window.location.replace('/login'); //loginpage
         } else {
             alert(response.statusText);
         }
