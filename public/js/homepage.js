@@ -5,22 +5,34 @@ let calendarYear = dayjs().year(); // Initialize calendarYear with the current y
 
 // DOM Element References
 const firstName = document.getElementById('First-Name');
+const userEmail = localStorage.getItem("userEmail");
 const calendarDay = document.querySelector('.Calendar-Dates');
 const calendarCurrentDate = document.querySelector('.Calendar-Current-Date');
 const prevButton = document.getElementById('Calendar-Previous');
 const nextButton = document.getElementById('Calendar-Next');
 const todayButton = document.getElementById('Today-Button');
-
+// console.log(firstName);
 // Get First Name
-fetch('userData.json')
-  .then(response => response.json())
-  .then(data => {
-    data.forEach(User => {
-      const firstName = User.first_name;
-      console.log(firstName);
-    });
-  })
-  .catch(error => console.error('Error (userData.json):', error));
+// const user = fetch('/api/projects/users')
+//     .then(response => response.json())
+//     .then(data => data.filter(user => user.email === userEmail)[0])
+//     .then(data => console.log(data))
+//     // .then(user => {
+//     //     req.session.save(() => {
+//     //         req.session.user = user;
+//     //     });
+//     // })
+//     .catch(error => console.error('Error (userData.json):', error));
+// console.log(users);
+// console.log(user);
+
+// req.session.save(() => {
+//     req.session.user = user;
+// });
+// firstName.innerHTML = user.first_name;
+// const firstName = document.getElementById('First-Name').innerHTML = user.first_name;
+
+// const user = users.filter(user => user.email === userEmail);
 
 // Quotable API Random Quote
 $.get('https://api.quotable.io/random', function(data) {

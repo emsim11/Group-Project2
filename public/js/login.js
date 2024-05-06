@@ -14,6 +14,7 @@ const loginFormHandler = async (event) => {
         });
 
         if (response.ok) {
+            localStorage.setItem("userEmail", email);
             window.location.replace('/homepage');
         } else {
             console.log(response);

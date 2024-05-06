@@ -10,6 +10,12 @@ router.get('/categories', async (req, res) => {
   try {
     const categories = await Category.findAll({});
     res.json(categories);
+
+    req.session.save(() => {
+      req.session.categories = categories;
+      res.status(200).json({ categories: categories, message: 'Categories Successful' });
+  });
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -63,8 +69,12 @@ router.get('/reps', async (req, res) => {
 
 router.get('/users', async (req, res) => {
   try {
-    const users = await User.findAll({});
-    res.json(users);
+    console.log('Users Found!');
+    const users = await User.findAll();
+    // res.json(users);
+    res.status(200).json(users);
+    // console.log('HRE');
+    // console.log(users);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

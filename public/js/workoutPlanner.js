@@ -15,6 +15,20 @@ var wgerEndpoints = { // JSON Object Containing API Endpoints
     'exerciseinfo': 'https://wger.de/api/v2/exerciseinfo/?'
 };
 
+
+const workoutChoicesList = document.getElementById('workoutChoices');
+
+// const categories = fetch('/api/projects/categories')
+//     .then(response => response.json())
+//     .then(data => console.log(data))
+//     // .then(user => {
+//     //     req.session.save(() => {
+//     //         req.session.user = user;
+//     //     });
+//     // })
+//     .catch(error => console.error('Error (categoriesData.json):', error));
+
+
 // Function: Fetch WGER Data Endpoints
 function fetchExercises() {
     return fetchDataFromEndpoint('exercise');
@@ -31,24 +45,67 @@ function fetchDataFromEndpoint(endpointKey, params) {
 };
 
 // Function: Run Console Log to Ensure API Works
-fetchExercises().then(function (data) { console.log(data) });
-fetch("https://wger.de/api/v2/exercisecategory/")
-    .then(function (resp) { return resp.json(); })
-    .then(function (data) { console.log(data); });
+function fetchCategories() {
+    fetchExercises().then(function (data) { console.log(data) });
+    fetch("https://wger.de/api/v2/exercisecategory/")
+        .then(function (resp) { return resp.json(); })
+        .then(function (data) { 
+            console.log(data); 
+            return data; 
+        })
+        .then(data => {
+                data.results.forEach(category => {
+    
+                // Create a list item element
+                const listItem = document.createElement('li');
+    
+                // Create a button element
+                const button = document.createElement('button');
+    
+                // Set the button text to the item
+                button.textContent = category.name;
+    
+                // // Add an event listener to the button
+                button.addEventListener('click', function () {
+                    console.log(`Button for ${category.name} was clicked`);
+                });
+    
+                // Add the button to the list item
+                listItem.appendChild(button);
+    
+                // Add the list item to the list
+                workoutChoicesList.appendChild(listItem);
+
+                // return workoutChoicesList;
+                return listItem;
+    
+                // let li = document.createElement('li');
+                // li.innerText = category.name;
+                // workoutChoicesList.appendChild(li);
+            });
+        });
+};
+
+//     // .then(function (data) { document.getElementById('workoutChoices').innerHTML = data.results; })
+
 
 // Function: Display Workout Choices
-var exeButton = $(".exerciseButton").on("click", function () {
-    $(".workoutChoices").css("visibility", "visible")
+var exeButton = $(".Exercise-Button").on("click", function () {
+    workoutChoicesList.style.visibility = 'visible';
+    // $(".workoutChoices").css("visibility", "visible");
+    console.log("HERE");
 });
 
 {
     document.addEventListener("DOMContentLoaded", function () {
-        const exerciseListButtons = document.querySelectorAll('.workoutChoices li');
+        const workoutChoicesListButtons = fetchCategories();
+        // const exerciseListButtons = document.querySelectorAll('.workoutChoices li');
+        // console.log(exerciseListButtons);
         const exercisesCheckboxContainer = document.querySelector('.checkboxContainer');
         const exerciseList = document.querySelector("#exercise");
         const exerciseHeadingButton = document.querySelector('.Checkbox-Heading');
         const formInstructions = document.querySelector('.Form-Instructions');
-        console.log(exerciseHeadingButton);
+        // console.log(exerciseHeadingButton);
 
         // Function: Make "Exercises:" Heading in Checkbox Container On Click Go Back to Workout Choices
         document.addEventListener('DOMContentLoaded', function() {
@@ -65,9 +122,9 @@ var exeButton = $(".exerciseButton").on("click", function () {
             }
         });
         var clonedExerciseListItem; // Declare Variable Outside Event Listener
-
+        console.log("BUTTONS TO BE UPDATE");
         // Function: Display Exercise List With Checkboxes When a Workout Choice is Made in WorkoutChoices Menu
-        exerciseListButtons.forEach(function (button) {
+        workoutChoicesListButtons.forEach(function (button) {
             button.addEventListener('click', function (event) {
                 console.log(event.target.dataset.category);
                 document.querySelector('.workoutChoices').style.visibility = 'hidden'; // Hide the Workout Types List
@@ -136,6 +193,8 @@ var exeButton = $(".exerciseButton").on("click", function () {
                 });
             });
         });
+        console.log("BUTTONS UPDATED");
+
 
         // Function: Use the "Exercise" Button to Go Back to Exercise Types
         const checkboxHeadingButton = document.getElementById('checkbox-heading-button');
