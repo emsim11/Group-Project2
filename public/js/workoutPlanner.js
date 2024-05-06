@@ -264,3 +264,14 @@ workoutChoicesCategories.forEach(item => { // Add Click Event Listener to Each L
         };
     });
 });
+
+
+
+// Select the Back to Calendar button
+const backToCalendarBtn = document.getElementById('backToCalendarBtn');
+
+// Add event listener to the button
+backToCalendarBtn.addEventListener('click', function() {
+    // Navigate back to the homepage
+    window.location.href = '/homepage'; // Update the URL to match your homepage URL
+});

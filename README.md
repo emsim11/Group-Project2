@@ -1,12 +1,15 @@
-# Workout Tracker
-Group Project #1
+# Workout Tracker 2.0
+
+Group Project #2
 
 ## Links
+
 [Link to Deployed Application](https://paulrusz.github.io/Group-Project1/)
 
-[GitHub Repository](https://github.com/PaulRusz/Group-Project1)
+[GitHub Repository](https://github.com/emsim11/Group-Project2)
 
 ## User Story
+
 ```
 AS A dedicated fitness enthusiast,
 I WANT an effective workout planning and progress tracking tool,
@@ -14,6 +17,7 @@ SO THAT I can maintain a well-organized, daily-tailored fitness schedule, closel
 ```
 
 ## Acceptance Criteria
+
 ```
 GIVEN a Workout Tracker website,
 WHEN the user visits the website for the first time,
@@ -64,9 +68,11 @@ THEN the user will return to their Workout Tracker.
 ```
 
 ## Description
+
 The Workout Tracker is a web-based application designed to help users plan, track, and manage their workout routines effectively. Whether you're a fitness enthusiast or just starting on your fitness journey, this application provides a user-friendly interface to streamline your workout planning process.
 
 ## Features
+
 - User Authentication: Secure login system to ensure only authorized users can access their workout data.
 - Workout Selection: Choose from a variety of workout types, including arms, legs, upper body, back, shoulders, abs, cardio, and rest day.
 - Workout Planner: Dynamically generates personalized workout plans based on user preferences and fitness goals-
@@ -76,14 +82,16 @@ The Workout Tracker is a web-based application designed to help users plan, trac
 - Customizable: Easily customize workout plans and exercises to fit individual needs and preferences-
 
 ## Technologies Used
+
 - HTML, CSS: Frontend development for creating a visually appealing and responsive user interface.
 - JavaScript (jQuery): Backend functionality and dynamic content generation.
 - Bootstrap: Frontend framework for styling and layout components.
 - Day.js: Lightweight JavaScript date library for handling date and time calculations.
 - WGER API: Used for loading exercise list in Exercise Type Container
-- Quotable  API: Used for loading random quotes on webpage
+- Quotable API: Used for loading random quotes on webpage
 
 ## Usage
+
 1. Type the name you wish to use into the 'First Name' box to access the workout tracker.
 2. A random quote is then generated using the Quotable API and placed below the header of the Webpage.
 3. Press the 'Choose an Exercise Type' button, at which time a list of muscle groups will appear.
@@ -95,6 +103,7 @@ The Workout Tracker is a web-based application designed to help users plan, trac
 9. Monitor your progress by placing your time & number of reps in the box and adjust your workouts accordingly to achieve your fitness goals effectively.
 
 ## Visuals
+
 This is the landing page for users when they visit the website for the first time:
 ![Workout Tracker Landing Page For First Time Visitors](assets/images/WorkoutTracker1.png)
 ![Workout Tracker Home Page](assets/images/WorkoutTracker2.png)
@@ -106,7 +115,9 @@ This is the landing page for users who have visited before and have submitted th
 ![Landing Page For Returning Visitors](assets/images/WorkoutTracker2.png)
 
 ## Authors and Acknowledgement
-**Main Contributors:** [Emily Simone](https://github.com/emsim11), [Paul Ruszkay](https://github.com/PaulRusz), and [Tania Bezerra](https://github.com/nybrasil)
+
+**Main Contributors:** [Emily Simone](https://github.com/emsim11), [Paul Ruszkay](https://github.com/PaulRusz), [Tania Bezerra](https://github.com/nybrasil), and Andrew Zubac (https://github.com/kitasauce).
 
 ## License
+
 This application is licensed under the MIT License - see the LICENSE file for details.
