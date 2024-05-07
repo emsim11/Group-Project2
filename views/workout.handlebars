@@ -1,50 +1,43 @@
-<div id="Workout" class="Display-Container">
-    <!-- Update Based On User's Workout Choice Selection -->
-    <h2 class="workoutPlannerHeader">Workout Planner</h2>
+<div id="Workout">
+    <div id="Timer">
+        <button id="Timer-Start-Button">Start</button>
+        <container id="Count-Up-Timer">
+            <label id="Hours">00</label>
+            <label id="Colon">:</label>
+            <label id="Minutes">00</label>
+            <label id="Colon">:</label>
+            <label id="Seconds">00</label>
+        </container>
+        <button id="Timer-Stop-Button">Stop</button>
     </div>
-
-    <div class="Display-Container">
-    <container id="countUpTimer">
-        <label id="minutes">00</label>
-        <label id="colon">:</label>
-        <label id="seconds">00</label>
-    </container>
+    <div class="Timer-Clear-Button">
+        <button id="Timer-Clear-Button">Clear Timer</button>
     </div>
-
-    <div class="Display-Container">
-    <h3 id="workoutMessage">Message Goes Here...</h3>
-    <ul id="exerciseList">
+    <div id="Exercise-List">
         <!-- Workouts Will Populate Here -->
-    </ul>
-    </div>
-
-    </div>
-
-    <div>
-    <div class="button-container">
-    <button id="Return-To-Homepage" class="Return-To-Homepage">Return Home</button>
     </div>
 </div>
 
-<div>
-    <input type="text" id="User-Input" class="User-Input" placeholder="Search for a workout using Google Gemini">
+<div id="AI-Box">
+    <div id="Search-Input">
+        <input type="text" id="User-Input" placeholder="Enter Text for Google Gemini API">
+        <button id="Search-Button">Search</button>
     </div>
-    <div class="button-container">
-    <button id="Search-Button" class="Search-Button">Search</button>
-    </div>
-
-    <div>
-    <div id="Results" class="AIdiv">
+    <div id="Results">
         <!-- Search Results Will Dynamically Display Here -->
-    </div>
-    
-  </div>
-      <script type="importmap">
-      {
+    </div>    
+</div>
+
+<script type="importmap">
+    {
         "imports": {
-          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
         }
-      }
-          </script>
+    }
+</script>
+
+<div id="Homepage-Button">
+    <button id="Return-To-Homepage">Return Home</button>
+</div>
 
 <script src="./js/workout.js" type="module"></script>

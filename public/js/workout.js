@@ -1,121 +1,86 @@
 // DOM Element References
 const HomeBtn = document.getElementById('Return-To-Homepage');
+const HoursLabel = document.getElementById('Hours');
+const MinutesLabel = document.getElementById('Minutes');
+const SecondsLabel = document.getElementById('Seconds');
+const TimerStartBtn = document.getElementById('Timer-Start-Button');
+const TimerStopBtn = document.getElementById('Timer-Stop-Button');
+const TimerClearBtn = document.getElementById('Timer-Clear-Button')
+const UserInput = document.getElementById('User-Input');
+const SearchButton = document.getElementById('Search-Button');
+const ResultsDiv = document.getElementById('Results');
 
 // Functions: Return to Homepage
 HomeBtn.addEventListener('click', function() {
     window.location.href = '/homepage';
 });
 
-// TODO: Consider Changing Timer So That Start and Stop Buttons Handle Begin/End
-// TODO: Add in API Script for Genesis Google API
-// TODO: Review Code to Make Sure it Applies and Functions as Expected
-
-document.addEventListener('DOMContentLoaded', function () {
-    var mainContent = document.getElementById('mainContent');
-    var workoutPlanner = document.getElementById('workoutPlanner');
-    startWorkoutButton.addEventListener('click', function () {
-        mainContent.style.display = 'none';
-        workoutPlanner.style.display = 'block';
-        setInterval(setTime, 1000);
-    });
-});
-
-// Workout Timer That Begins When "Begin Workout" is Clicked
-var minutesLabel = document.getElementById("minutes")
-var secondsLabel = document.getElementById("seconds")
-var totalSeconds = 0;
-
-function setTime() {
-    ++totalSeconds
-    secondsLabel.innerHTML = pad(totalSeconds % 60)
-    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
-};
-
-function pad(val) {
-    var valString = val + "";
-    if (valString.length < 2) {
-        return "0" + valString;
-    } else {
-        return valString
-    }
-};
-// Function: Display Workout Message Based On Workout Choice Made By User
-const workoutChoicesCategories = document.querySelectorAll('.Category-Choices li'); // Get List of Workout Choices
-workoutChoicesCategories.forEach(item => { // Add Click Event Listener to Each List Item
-    item.addEventListener('click', function () {
-        const selectedCategory = item.textContent.trim(); // Get Text Content of Clicked Item
-        console.log(selectedCategory);
-        const workoutMessage = document.getElementById('workoutMessage'); // Update Workout Message Based On Selected Workout Category
-        switch (selectedCategory) {
-            case 'Complete Arm Workout':
-                workoutMessage.textContent = 'Today is Arm Day - Get those biceps pumping!';
-                break;
-            case 'Leg Workout':
-                workoutMessage.textContent = 'Today is Leg Day - Strengthen those legs!';
-                break;
-            case 'Calves Workout':
-                workoutMessage.textContent = 'Today is Calves Day - Tone those calves!';
-                break;
-            case 'Upper Body Workout':
-                workoutMessage.textContent = 'Today is Upper Body Day - Build a strong upper body!';
-                break;
-            case 'Back Workout':
-                workoutMessage.textContent = 'Today is Back Day - Strengthen your back!';
-                break;
-            case 'Shoulder Workout':
-                workoutMessage.textContent = 'Today is Shoulder Day - Bulk up your shoulders!';
-                break;
-            case 'Ab Workout':
-                workoutMessage.textContent = 'Today is Ab Day - Work on those core muscles!';
-                break;
-            case 'Cardio Workout':
-                workoutMessage.textContent = 'Today is Cardio Day - Get your heart pumping with these cardio workouts!';
-                break;
-            case 'Rest Day':
-                workoutMessage.textContent = 'Today is Rest Day - Relax, recover, and reward yourself!';
-                break;
-            default:
-                workoutMessage.textContent = 'Your Workout List:';
-        };
-    });
-});
-
-
-
-// Runs the Google Gemini API
-const API_KEY = 'AIzaSyDM9h_H6uJNcWntAN4e30DTWXICQr-NggI';
-
-import { GoogleGenerativeAI } from "@google/generative-ai";
-// Access your API key (see "Set up your API key" above)
-
-document.addEventListener('DOMContentLoaded', () => {
-    const genAI = new GoogleGenerativeAI(API_KEY);
-    const userInput = document.getElementById('User-Input');
-    const resultsDiv = document.getElementById('Results');
-
-    function run() {
-        const searchButton = document.getElementById('Search-Button');
-        if (!searchButton) {
-            console.error('Search button not found in the DOM.');
-            return;
+// Functions: Workout Timer
+(function() {
+    let TotalSeconds = 0;
+    let Timer = null;
+    
+    TimerStartBtn.addEventListener('click', function() {
+        if (!Timer) {
+            Timer = setInterval(setTime, 1000);
         }
+    });
+  
+    TimerStopBtn.addEventListener('click', function() {
+        if (Timer) {
+            clearInterval(Timer);
+            Timer = null;
+        }
+    });
 
-        searchButton.addEventListener('click', async () => {
-            console.log("Showing a workout");
-            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-            const prompt = userInput.value;
-            const result = await model.generateContent(prompt);
-            const response = await result.response;
-            const text = response.text();
+    TimerClearBtn.addEventListener('click', function() {
+        TotalSeconds = 0;
+        clearInterval(Timer);
+        Timer = null;
+        SecondsLabel.innerHTML = "00";
+        MinutesLabel.innerHTML = "00";
+        HoursLabel.innerHTML = "00";
+    });
 
-            const resultElement = document.createElement('div');
-            resultElement.classList.add('AIdiv');
-            resultElement.innerHTML = `<p>${text}</p>`;
-
-            resultsDiv.innerHTML = ''; // Clear previous results
-            resultsDiv.appendChild(resultElement);
-        });
+    function setTime() {
+      TotalSeconds++;
+      SecondsLabel.innerHTML = pad(TotalSeconds % 60);
+      MinutesLabel.innerHTML = pad(parseInt(TotalSeconds / 60));
+      HoursLabel.innerHTML = pad(parseInt(TotalSeconds / 3600))
     }
+  
+    function pad(val) {
+      var valString = val + "";
+      if (valString.length < 2) {
+        return "0" + valString;
+      } else {
+        return valString;
+      }
+    }
+  
+})();
 
-    run();
-});
+// Functions: Gemini Google AI
+const API_KEY = 'AIzaSyDM9h_H6uJNcWntAN4e30DTWXICQr-NggI';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+const GenAI = new GoogleGenerativeAI(API_KEY);
+
+async function run() {
+    console.log('Gemini Google AI API is Running');
+    
+    SearchButton.addEventListener('click', async () => {
+        const Model = GenAI.getGenerativeModel({ model: 'gemini-pro' });
+        const Prompt = UserInput.value;
+
+        const Result = await Model.generateContent(Prompt);
+        const Response = await Result.response;
+        const Text = Response.text();
+        
+        const ResultElement = document.createElement('div');
+        ResultElement.innerHTML = `<p>${Text}</p>`;
+        ResultsDiv.innerHTML = '';
+        ResultsDiv.appendChild(ResultElement);
+    });
+}
+
+run();

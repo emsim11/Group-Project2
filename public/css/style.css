@@ -33,12 +33,20 @@ footer {
     text-align: center;
     border: 5px solid var(--color-darkblue);
     border-radius: 10px;
-    margin: 5px;
-    margin-bottom: 5px;
     position: absolute;
     padding: 10px;
     background-color: var(--color-lightwhite);
     width: 100%;
+}
+
+footer p {
+    margin: 0px;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 80%;
+    }
 }
 
 /* Login Handlebars */
@@ -55,10 +63,6 @@ footer {
     border-radius: 10px;
 }
 
-.Container-Login-Form {
-    display: flex;
-}
-
 .Login-Form {
     background: var(--color-white);
     display: flex;
@@ -66,16 +70,6 @@ footer {
     justify-content: space-between;
     padding: 20px;
     border-radius: 20px;
-}
-
-@media (max-width: 992px) {
-    .Login-Image {
-        width: 35%;
-    }
-}
-
-.Login-Image {
-    width: 316px;
 }
 
 @media (max-width: 992px) {
@@ -349,7 +343,7 @@ header .Calendar-Nav span:hover {
     justify-content: center;
 }
 
-.Category-Button {
+.Category-Button, .Exercise-Button {
     background-color: var(--color-lightblue);
     border-radius: .5em;
     border: black;
@@ -384,152 +378,96 @@ header .Calendar-Nav span:hover {
     background-color: var(--color-lightblue);
 }
 
-.Exercise-List {
-    height: 80%;
-    max-height: 400px;
-    width: 475px;
-    overflow-y: auto;
-    visibility: hidden;
-    z-index: 1;
-    background-color: #fafafa;
-    border-radius: 15px;
-    box-shadow: 10px 5px 5px grey;
-    padding: 20px;
-    padding-right: 50px;
-    padding-left: 50px;
-}
-
-
-.Submit-Button {
-    display: inline-block;
-    border: none;
-    background-color: #8ed6ee;
-}
-
-.Submit-Button button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.Submit-Button button img {
-    width: 30px;
-}
-
-/* Main Page */
-#Workout-Page {
-    position: relative;
-    min-height: 100vh;
-    margin: 0;
-}
-
-#mainContent {
-    padding-bottom: 10rem;
-    margin: 0;
-}
-
-/* Display Form & Calendar Side-by-Side */
-/* Exercise Form */
-
-
-
-.Category-Choices {
-    list-style: none;
-    font-size: 20px;
-    visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    color: black;
-    text-align: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    cursor: pointer;
-    margin: 15px
-}
-
-.Category-Choices li {
-    background: lightcyan;
-    border-radius: .5em;
-    margin-bottom: 5px;
-    transition-delay: calc(50ms * var(--delay));
-}
-
-.Category-Choices li:hover {
-    background: lightgray
-}
-
 #Exercise-Button {
     display: flex;
     justify-content: center;
     visibility: hidden;
 }
 
-.Exercise-Button {
-    display: initial;
-    text-align: center;
-    font-size: 35px;
-    background-color: #8ed6ee;
-    border-radius: .5em;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-bottom: 10px;
-    border-style: double;
-}
+/* #Exercise-Choices, .Exercise-Buttons */
 
-.Exercise-Buttons {
+#Workout-Planner-Buttons {
     display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-#Exercise-Choices {
-    padding: 0;
-    margin: 0;
-}
-
-/* Workout Planner */
-#workoutPlanner {
-    border: 5px solid #427884;
-    border-radius: 10px;
+    justify-content: space-between;
     margin: 10px;
+}
+
+.Workout-Planner-Buttons {
+    background-color: var(--color-darkblue);
+    color: var(--color-lightwhite);
+    padding: 5px;
+    border-radius: .5em;
+    font-family: Poppins-Medium;
+}
+
+/* Workout Handlebars */
+#Timer {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+#Timer-Start-Button {
+    margin: 10px;
+    border-radius: 5px;
     padding: 10px;
-    background-color: #fafafa;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-
 }
 
-#workoutHeading {
-    text-align: center;
-    color: #fafafa;
-}
-
-.workoutPlannerHeader {
-    font-size: 45px;
-    font-weight: bold;
-    font-family: monospace;
-}
-
-#countUpTimer {
-    background-color: #427884;
+#Count-Up-Timer {
+    background-color: var(--color-darkblue);
     font-size: 25px;
-    padding: 10px;
-    border-radius: 25%;
-    color: whitesmoke;
     font-family: monospace;
+    padding: 10px;
+    border-radius: 25px;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#exerciseList {
-    list-style-type: none;
+#Timer-Stop-Button {
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px;
 }
 
-@media only screen and (max-width: 600px) {
-    .container {
-        width: 80%;
-    }
+.Timer-Clear-Button {
+    display: flex;
+    justify-content: center;
+    font-family: Poppins;
 }
 
-.AIdiv {
+#Timer-Clear-Button {
+    border-radius: 5px;
+    border-color: var(--color-darkblue);
+}
+
+/* User-Selected Exercises List */
+
+#Search-Input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+#User-Input {
+    font-family: Poppins;
+    height: 50px;
+    width: 40%;
+    text-align: center;
+    border: 2px solid var(--color-darkblue);
+    border-radius: 50px;
+    margin: 10px;
+}
+
+#Search-Button {
+    padding: 5px 20px 5px 20px;
+    border: 2px solid var(--color-darkgray);
+    border-radius: 10px;
+}
+
+#Results {
     text-align: center;
     font-size: 15px;
     margin: 15px;
@@ -539,56 +477,14 @@ header .Calendar-Nav span:hover {
     border-color: #427884;
 }
 
-.button-container {
+#Homepage-Button {
     display: flex;
     justify-content: center;
-    padding: 5px;
-    margin: 5px;
 }
 
-.Search-Button {
+#Return-To-Homepage {
+    margin: 15px;
     padding: 5px 20px 5px 20px;
     border: 2px solid var(--color-darkgray);
     border-radius: 10px;
-
-}
-
-.Return-To-Homepage {
-    margin-top: 15px;
-    padding: 5px 20px 5px 20px;
-    border: 2px solid var(--color-darkgray);
-    border-radius: 10px;   
-
-}
-
-
-.Back-To-Calendar-Button {
-    padding: 5px 20px 5px 20px;
-    border: 2px solid var(--color-darkgray);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.Start-Workout {
-    padding: 5px 20px 5px 20px;
-    border: 2px solid var(--color-darkgray);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-/* Gemini Search Bar */
-.User-Input {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    margin: 5px;
-    height: 46px;
-    border-radius: 48px;
-    border: 2px solid #334A52;
-    width: 40%;
-    margin: 0 auto; /* Center horizontally */
-
 }
