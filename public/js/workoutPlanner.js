@@ -125,20 +125,23 @@ const CategoryButtons = (data) => {
 };
 
 // Functions: Exercise List
-const ExerciseButtons = (data) => {
-    document.body.querySelectorAll('.Exercise-Buttons').forEach(button => button.remove());
-    data.forEach(exercise => {
-        const ExerciseChoicesBtn = document.createElement('button');
-        ExerciseChoicesBtn.textContent = exercise.name;
-        ExerciseChoicesBtn.addEventListener('click', )
-    })
-}
+ExerciseBtn.addEventListener('click', async () => {
+    console.log('ExerciseBtn was clicked!');
+    try {
+        const ExerciseData = await Categories();
+        displayExerciseData(ExerciseData);
+        hideFetchErrorMessage();
+    } catch (error) {
+        console.error('Error Fetching Exercises:', error);
+        showFetchErrorMessage(error);
+    }
+});
 
 const displayExerciseData = (data) => {
-    console.log('Displaying Exercises:', data);
+    console.log('Displaying Exercise Data:', data);
     ExerciseChoicesList.innerHTML = '';
-
-    data.forEach((exercise) => {
+    
+    data.exercise.forEach((exercise) => {
         const ExerciseChoicesBtn = document.createElement('button');
         ExerciseChoicesBtn.textContent = exercise.name;
         ExerciseChoicesBtn.classList.add('Exercise-Buttons');
@@ -152,7 +155,22 @@ const displayExerciseData = (data) => {
     ExerciseBtnContainer.display = 'block';
 };
 
+const ExerciseButtons = (data) => {
+    document.body.querySelectorAll('.Exercise-Buttons').forEach(button => button.remove());
+    data.forEach(exercise => {
+        const ExerciseChoicesBtn = document.createElement('button');
+        ExerciseChoicesBtn.textContent = exercise.name;
+        ExerciseChoicesBtn.addEventListener('click', )
+        document.body.appendChild(ExerciseChoicesBtn);
+    })
+}
+
 // Functions: Back to Homepage
 BackToCalendarBtn.addEventListener('click', function() {
     window.location.href = '/homepage';
+});
+
+// Functions: Start Workout
+StartWorkoutBtn.addEventListener('click', function() {
+    window.location.href = '/workout';
 });
