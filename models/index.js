@@ -12,31 +12,40 @@ const User = require('./User')
 const Weight = require('./Weight');
 const WorkoutPlan = require('./WorkoutPlan');
 
-// JOIN TABLES:
-const ExerciseCategory = sequelize.define('ExerciseCategory', { });
-Exercise.belongsToMany(Category, { through: ExerciseCategory });
-Category.belongsToMany(Exercise, { through: ExerciseCategory });
+Category.hasMany(Exercise, {
+    foreignKey: 'category_name',
+});
 
-const ExerciseEquipment = sequelize.define('ExerciseEquipment', { });
-Exercise.belongsToMany(Equipment, { through: ExerciseEquipment });
-Equipment.belongsToMany(Exercise, { through: ExerciseEquipment });
+Exercise.belongsTo(Category, {
+    foreignKey: 'category_name'
+});
 
-const ExerciseMuscle = sequelize.define('ExerciseMuscle', { });
-Exercise.belongsToMany(Muscle, { through: ExerciseMuscle });
-Muscle.belongsToMany(Exercise, { through: ExerciseMuscle });
+// WorkoutPlan.belongsToMany(Exercise, { through: 'WorkoutPlanExercises' });
 
-const ExerciseRep = sequelize.define('ExerciseRep', { });
-Exercise.belongsToMany(Rep, { through: ExerciseRep });
-Rep.belongsToMany(Exercise, { through: ExerciseRep });
+// async function createAndRetrieveWorkoutPlan() {
+//   try {
+//     const newWorkoutPlan = await WorkoutPlan.create({
+//       date: '2024-10-15',
+//       exercise: [1, 2, 3]
+//     });
+    
+//     console.log('New Workout Plan Created:');
+//     console.log(newWorkoutPlan.toJSON());
 
-const ExerciseWeight = sequelize.define('ExerciseWeight', { });
-Exercise.belongsToMany(Weight, { through: ExerciseWeight });
-Weight.belongsToMany(Exercise, { through: ExerciseWeight });
+//     const workoutPlanId = 1;
+//     const workoutPlanWithExercises = await WorkoutPlan.findByPk(workoutPlanId, { include: Exercise });
+  
+//     if (workoutPlanWithExercises) {
+//       console.log('Workout Plan with Exercises:');
+//       console.log(workoutPlanWithExercises.toJSON());
+//     } else {
+//       console.error('Workout Plan Not Found');
+//     }
+//   } catch (error) {
+//   console.error('Error (WorkoutPlan.js):', error);
+//   }
 
-// Exercise User
-
-// Exercise Date
-
-// Exercise Workout Plan
+//   await WorkoutPlan.sync();
+// }
 
 module.exports = { Category, Date, Equipment, Exercise, Muscle, Rep, User, Weight, WorkoutPlan }

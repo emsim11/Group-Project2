@@ -22,8 +22,4 @@ Category.init({
     modelName: 'category'
 });
 
-Category.associate = (models) => {
-    Category.belongsToMany(models.Exercise, { through: 'ExerciseCategory' });
-};
-
 module.exports = Category;

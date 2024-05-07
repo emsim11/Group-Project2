@@ -22,8 +22,4 @@ Equipment.init({
     modelName: 'equipment'
 });
 
-Equipment.associate = (models) => {
-    Equipment.belongsToMany(models.Exercise, { through: 'ExerciseEquipment' });
-};
-
 module.exports = Equipment;

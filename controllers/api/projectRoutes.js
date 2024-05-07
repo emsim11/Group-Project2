@@ -48,6 +48,22 @@ router.get('/exercise', async (req, res) => {
   }
 });
 
+router.get('/exercise/:selectedCategory', async (req, res) => {
+  const selectedCategory = req.params.selectedCategory;
+
+  try {
+    const exercises = await Exercise.find({ category_name: selectedCategory });
+
+    if (!exercises) {
+      return res.status(404).json({ message: 'Exercises Not Found For the Selected Category' });
+    }
+    res.status(200).json({ exercises, message: 'Exercises for selected category retrieved successfully' });
+  } catch (error) {
+    console.error('Error Fetching Exercises For Selected Category in GET Route:', error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.get('/muscle', async (req, res) => {
   try {
     const muscle = await Muscle.findAll({});

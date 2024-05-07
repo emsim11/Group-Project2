@@ -23,8 +23,4 @@ Rep.init({
     modelName: 'rep'
 });
 
-Rep.associate = (models) => {
-    Rep.belongsToMany(models.Exercise, { through: 'ExerciseRep' });
-};
-
 module.exports = Rep;

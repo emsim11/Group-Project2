@@ -272,12 +272,14 @@ header .Calendar-Nav span:hover {
     text-align: center;
     flex-wrap: wrap;
     padding-right: 2rem;
+    font-family: Poppins;
 }
 
 .Calendar-Body li {
     width: calc(100% / 7);
     font-size: 1.5rem;
     color: black;
+    font-size: 15px;
 }
 
 .Calendar-Body .Calendar-Dates li {

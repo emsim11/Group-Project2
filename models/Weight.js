@@ -22,8 +22,4 @@ Weight.init({
     modelName: 'weight'
 });
 
-Weight.associate = (models) => {
-    Weight.belongsToMany(models.Weight, { through: 'ExerciseWeight' });
-};
-
 module.exports = Weight;
