@@ -44,5 +44,8 @@ app.use((err, req, res, next) => {
 });
 
 sequelize.sync({ force: false }).then(() => {
+    console.log('Database Synchronized Successfully');
     app.listen(PORT, () => console.log(`Now listening on PORT: ${PORT}`));
+}).catch((error) => {
+    console.error('Error Synchronizing Database:', error);
 });
