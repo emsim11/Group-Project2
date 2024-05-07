@@ -538,3 +538,57 @@ header .Calendar-Nav span:hover {
     border-style: solid;
     border-color: #427884;
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    margin: 5px;
+}
+
+.Search-Button {
+    padding: 5px 20px 5px 20px;
+    border: 2px solid var(--color-darkgray);
+    border-radius: 10px;
+
+}
+
+.Return-To-Homepage {
+    margin-top: 15px;
+    padding: 5px 20px 5px 20px;
+    border: 2px solid var(--color-darkgray);
+    border-radius: 10px;   
+
+}
+
+
+.Back-To-Calendar-Button {
+    padding: 5px 20px 5px 20px;
+    border: 2px solid var(--color-darkgray);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.Start-Workout {
+    padding: 5px 20px 5px 20px;
+    border: 2px solid var(--color-darkgray);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Gemini Search Bar */
+.User-Input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+    height: 46px;
+    border-radius: 48px;
+    border: 2px solid #334A52;
+    width: 40%;
+    margin: 0 auto; /* Center horizontally */
+
+}

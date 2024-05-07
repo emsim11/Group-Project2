@@ -1,22 +1,39 @@
-<div id="Workout">
+<div id="Workout" class="Display-Container">
     <!-- Update Based On User's Workout Choice Selection -->
     <h2 class="workoutPlannerHeader">Workout Planner</h2>
+    </div>
+
+    <div class="Display-Container">
     <container id="countUpTimer">
         <label id="minutes">00</label>
         <label id="colon">:</label>
         <label id="seconds">00</label>
     </container>
+    </div>
+
+    <div class="Display-Container">
     <h3 id="workoutMessage">Message Goes Here...</h3>
     <ul id="exerciseList">
         <!-- Workouts Will Populate Here -->
     </ul>
-    <button id="Return-To-Homepage">Return Home</button>
+    </div>
+
+    </div>
+
+    <div>
+    <div class="button-container">
+    <button id="Return-To-Homepage" class="Return-To-Homepage">Return Home</button>
+    </div>
 </div>
 
 <div>
-    <input type="text" id="User-Input" placeholder="Enter text for Google Gemini API">
+    <input type="text" id="User-Input" class="User-Input" placeholder="Search for a workout using Google Gemini">
+    </div>
+    <div class="button-container">
     <button id="Search-Button" class="Search-Button">Search</button>
-    
+    </div>
+
+    <div>
     <div id="Results" class="AIdiv">
         <!-- Search Results Will Dynamically Display Here -->
     </div>
