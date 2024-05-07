@@ -486,25 +486,6 @@ header .Calendar-Nav span:hover {
     padding: 0;
     margin: 0;
 }
-/* Exercise Checkbox Display */
-
-#exercise {
-    padding: 0;
-    margin: 0;
-}
-
-#exercise li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-/* Style for checkboxes */
-#exercise input[type="checkbox"] {
-    margin-right: 10px;
-    /* Add some spacing between checkbox and exercise name */
-
-}
 
 /* Workout Planner */
 #workoutPlanner {
