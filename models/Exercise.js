@@ -39,6 +39,20 @@ Exercise.init({
             model: 'category',
             key: 'name'
         }
+    },
+    equipment_name: {
+        type: DataTypes.STRING,
+        references: {
+            model: 'equipment',
+            key: 'name'
+        }
+    },
+    muscle_name: {
+        type: DataTypes.STRING,
+        references: {
+            model: 'muscle',
+            key: 'name'
+        }
     }
 }, {
     sequelize,
