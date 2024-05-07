@@ -82,32 +82,40 @@ workoutChoicesCategories.forEach(item => { // Add Click Event Listener to Each L
 
 
 
+// Runs the Google Gemini API
 const API_KEY = 'AIzaSyDM9h_H6uJNcWntAN4e30DTWXICQr-NggI';
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 // Access your API key (see "Set up your API key" above)
-const genAI = new GoogleGenerativeAI(API_KEY);
 
-const userInput = document.getElementById('User-Input');
-const searchButton = document.getElementById('Search-Button');
-const resultsDiv = document.getElementById('Results');
+document.addEventListener('DOMContentLoaded', () => {
+    const genAI = new GoogleGenerativeAI(API_KEY);
+    const userInput = document.getElementById('User-Input');
+    const resultsDiv = document.getElementById('Results');
 
-async function run() {
-    console.log("Showing a workout");
-  // For text-only input, use the gemini-pro model
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-  const prompt = "show a workout";
-  
-  const result = await model.generateContent(prompt);
-  const response = await result.response;
-  const text = response.text();
+    function run() {
+        const searchButton = document.getElementById('Search-Button');
+        if (!searchButton) {
+            console.error('Search button not found in the DOM.');
+            return;
+        }
 
-          // Display the generated text in the results div
-        const resultElement = document.createElement('div');
-        resultElement.classList.add('AIdiv')
-        resultElement.innerHTML = `<p>${text}</p>`;
-        resultsDiv.innerHTML = ''; // Clear previous results
-        resultsDiv.appendChild(resultElement);
+        searchButton.addEventListener('click', async () => {
+            console.log("Showing a workout");
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            const prompt = userInput.value;
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            const text = response.text();
+
+            const resultElement = document.createElement('div');
+            resultElement.classList.add('AIdiv');
+            resultElement.innerHTML = `<p>${text}</p>`;
+
+            resultsDiv.innerHTML = ''; // Clear previous results
+            resultsDiv.appendChild(resultElement);
+        });
     }
 
-run();
+    run();
+});
