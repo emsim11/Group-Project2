@@ -110,5 +110,4 @@ async function run() {
         resultsDiv.appendChild(resultElement);
     }
 
-
 run();
