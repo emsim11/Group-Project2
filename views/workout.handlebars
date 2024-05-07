@@ -16,9 +16,18 @@
 <div>
     <input type="text" id="User-Input" placeholder="Enter text for Google Gemini API">
     <button id="Search-Button">Search</button>
-    <div id="Results">
+    
+    <div id="Results" class="AIdiv">
         <!-- Search Results Will Dynamically Display Here -->
     </div>
+    
   </div>
+      <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+          </script>
 
-<script src="./js/workout.js"></script>
+<script src="./js/workout.js" type="module"></script>
