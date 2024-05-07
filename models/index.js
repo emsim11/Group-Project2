@@ -20,6 +20,22 @@ Exercise.belongsTo(Category, {
     foreignKey: 'category_name'
 });
 
+Equipment.hasMany(Exercise, {
+    foreignKey: 'equipment_name',
+});
+
+Exercise.belongsTo(Equipment, {
+    foreignKey: 'equipment_name'
+});
+
+Muscle.hasMany(Exercise, {
+    foreignKey: 'muscle_name'
+});
+
+Exercise.belongsTo(Muscle, {
+    foreignKey: 'muscle_name'
+});
+
 // WorkoutPlan.belongsToMany(Exercise, { through: 'WorkoutPlanExercises' });
 
 // async function createAndRetrieveWorkoutPlan() {
