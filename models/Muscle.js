@@ -44,8 +44,4 @@ Muscle.init({
     modelName: 'muscle'
 });
 
-Muscle.associate = (models) => {
-    Muscle.belongsToMany(models.Exercise, { through: 'ExerciseMuscle' });
-};
-
 module.exports = Muscle;

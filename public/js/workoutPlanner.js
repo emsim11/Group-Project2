@@ -17,7 +17,8 @@ var WorkoutAPIEndpoints = {
     'Exercise': 'http://localhost:3001/api/projects/exercise',
     'Muscle': 'http://localhost:3001/api/projects/muscle',
     'Rep': 'http://localhost:3001/api/projects/rep',
-    'Weight': 'http://localhost:3001/api/projects/weight'
+    'Weight': 'http://localhost:3001/api/projects/weight',
+    'ExerciseCategory': 'http://localhost:3001/api/projects/exercise/:selectedCategory'
 }
 
 // Function: Fetch Data From a Specific Endpoint
@@ -47,45 +48,7 @@ const hideFetchErrorMessage = () => {
     ErrorMessageEl.style.display = 'none';
 }
 
-// Functions: Fetch API Data From Endpoints
-const Exercises = () => {
-    return fetchDataFromEndpoint(WorkoutAPIEndpoints.Exercise);
-};
-
-const Categories = () => {
-    return fetchDataFromEndpoint(WorkoutAPIEndpoints.Category);
-};
-
-const ExerciseCategories = async (category) => {
-    const EncodedCategory = encodeURIComponent(category);
-    const ExerciseCategory = `http://localhost:3001/api/projects/exercise?category=${EncodedCategory}`;
-
-    try {
-        const ExerciseCategoriesData = await fetch(ExerciseCategory).then(res => res.json());
-        const CategoryNames = ExerciseCategoriesData.map(category => category.name);
-        displayExerciseData(CategoryNames);
-        hideFetchErrorMessage();
-    } catch (error) {
-        console.error('Error Fetching Exercises by Category:', error);
-        showFetchErrorMessage(error);
-    }
-};
-
-const fetchExercisesForCategory = (selectedCategory) => {
-    return async () => {
-        try {
-            const CategoryNames = await ExerciseCategories(selectedCategory);
-            displayExerciseData(CategoryNames);
-            hideFetchErrorMessage;
-        } catch (error) {
-            console.error('Error Fetching Exercises by Category:', error);
-            showFetchErrorMessage(error);
-        }
-        CategoriesChoicesList.innerHTML = '';
-    };
-};
-
-// Functions: Categories List
+// Functions: Event Listeners
 CategoryBtn.addEventListener('click', async () => {
     console.log('CategoryBtn was clicked!');
     try {
@@ -108,7 +71,7 @@ const displayCategoryData = (data) => {
         CategoryChoicesBtn.classList.add('Category-Buttons');
         CategoryChoicesBtn.addEventListener('click', () => {
             console.log('CategoryChoicesBtn was clicked!');
-            fetchExercisesForCategory(category.name)();
+            fetchExercisesForCategory(category.name);
         });
         CategoriesChoicesList.appendChild(CategoryChoicesBtn);
     });
@@ -119,23 +82,53 @@ const CategoryButtons = (data) => {
     data.forEach(category => {
         const CategoryChoicesBtn = document.createElement('button');
         CategoryChoicesBtn.textContent = category.name;
-        CategoryChoicesBtn.addEventListener('click', fetchExercisesForCategory(category));
+        CategoryChoicesBtn.addEventListener('click', () => {
+            fetchExercisesForCategory(category.name);
+        });
         document.body.appendChild(CategoryChoicesBtn);
     });
 };
 
-// Functions: Exercise List
-ExerciseBtn.addEventListener('click', async () => {
-    console.log('ExerciseBtn was clicked!');
+// Functions: Fetch API Data From Endpoints
+const Exercises = () => {
+    return fetchDataFromEndpoint(WorkoutAPIEndpoints.Exercise);
+};
+
+const Categories = () => {
+    return fetchDataFromEndpoint(WorkoutAPIEndpoints.Category);
+};
+
+const ExerciseCategories = async (category) => {
+    const EncodedCategory = encodeURIComponent(category);
+    const ExerciseCategory = `http://localhost:3001/api/projects/exercise/${EncodedCategory}`;
+
     try {
-        const ExerciseData = await Categories();
-        displayExerciseData(ExerciseData);
+        const ExerciseCategoriesData = await fetch(ExerciseCategory).then(res => res.json());
+        const CategoryNames = ExerciseCategoriesData.map(category => category.name);
+        displayExerciseData(CategoryNames);
+        hideFetchErrorMessage();
+    } catch (error) {
+        console.error('Error Fetching Exercises by Category:', error);
+        showFetchErrorMessage(error);
+    }
+};
+
+const fetchExercisesForCategory = async (selectedCategory) => {
+    try {
+        const response = await fetch(`/api/projects/exercise/${selectedCategory}`);
+        if (!response.ok) {
+            throw new Error('Failed to Fetch Exercises');
+        }
+        const exerciseData = await response.json();
+        console.log('Exercises for Category:', exerciseData);
+        displayExerciseData(exerciseData);
         hideFetchErrorMessage();
     } catch (error) {
         console.error('Error Fetching Exercises:', error);
         showFetchErrorMessage(error);
     }
-});
+    CategoriesChoicesList.innerHTML = '';
+};
 
 const displayExerciseData = (data) => {
     console.log('Displaying Exercise Data:', data);
@@ -151,8 +144,8 @@ const displayExerciseData = (data) => {
         });
         ExerciseChoicesList.appendChild(ExerciseChoicesBtn)
     })
-    CategoryBtnContainer.display = 'none';
-    ExerciseBtnContainer.display = 'block';
+    CategoryBtnContainer.style.display = 'none';
+    ExerciseBtnContainer.style.display = 'block';
 };
 
 const ExerciseButtons = (data) => {
@@ -160,10 +153,12 @@ const ExerciseButtons = (data) => {
     data.forEach(exercise => {
         const ExerciseChoicesBtn = document.createElement('button');
         ExerciseChoicesBtn.textContent = exercise.name;
-        ExerciseChoicesBtn.addEventListener('click', )
+        ExerciseChoicesBtn.addEventListener('click', () => {
+            fetchExercisesForCategory(exercise.name);
+        });
         document.body.appendChild(ExerciseChoicesBtn);
-    })
-}
+    });
+};
 
 // Functions: Back to Homepage
 BackToCalendarBtn.addEventListener('click', function() {

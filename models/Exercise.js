@@ -32,6 +32,13 @@ Exercise.init({
                 }
             }
         }
+    }, 
+    category_name: {
+        type: DataTypes.STRING,
+        references: {
+            model: 'category',
+            key: 'name'
+        }
     }
 }, {
     sequelize,
@@ -40,25 +47,5 @@ Exercise.init({
     underscored: true,
     modelName: 'exercise'
 });
-
-Exercise.associate = (models) => {
-    Exercise.belongsToMany(models.Equipment, { through: 'ExerciseEquipment' });
-};
-
-Exercise.associate = (models) => {
-    Exercise.belongsToMany(models.Muscle, { through: 'ExerciseMuscle' });
-};
-
-Exercise.associate = (models) => {
-    Exercise.belongsToMany(models.Rep, { through: 'ExerciseRep' });
-};
-
-Exercise.associate = (models) => {
-    Exercise.belongsToMany(models.Weight, { through: 'ExerciseWeight' });
-};
-
-Exercise.associate = (models) => {
-    Exercise.belongsToMany(models.Category, { through: 'ExerciseCategory' });
-};
 
 module.exports = Exercise;

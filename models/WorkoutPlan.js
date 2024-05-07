@@ -37,32 +37,4 @@ WorkoutPlan.init({
   modelName: 'workoutPlan'
 });
 
-WorkoutPlan.belongsToMany(Exercise, { through: 'WorkoutPlanExercises' });
-
-async function createAndRetrieveWorkoutPlan() {
-  try {
-    const newWorkoutPlan = await WorkoutPlan.create({
-      date: '2024-10-15',
-      exercise: [1, 2, 3]
-    });
-    
-    console.log('New Workout Plan Created:');
-    console.log(newWorkoutPlan.toJSON());
-
-    const workoutPlanId = 1;
-    const workoutPlanWithExercises = await WorkoutPlan.findByPk(workoutPlanId, { include: Exercise });
-  
-    if (workoutPlanWithExercises) {
-      console.log('Workout Plan with Exercises:');
-      console.log(workoutPlanWithExercises.toJSON());
-    } else {
-      console.error('Workout Plan Not Found');
-    }
-  } catch (error) {
-  console.error('Error (WorkoutPlan.js):', error);
-  }
-
-  await WorkoutPlan.sync();
-}
-
 module.exports = WorkoutPlan;
