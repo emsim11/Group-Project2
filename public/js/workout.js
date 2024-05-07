@@ -93,7 +93,7 @@ const searchButton = document.getElementById('Search-Button');
 const resultsDiv = document.getElementById('Results');
 
 async function run() {
-    console.log("running");
+    console.log("Showing a workout");
   // For text-only input, use the gemini-pro model
   const model = genAI.getGenerativeModel({ model: "gemini-pro" });
   const prompt = "show a workout";

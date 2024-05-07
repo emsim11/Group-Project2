@@ -138,7 +138,7 @@ footer {
     padding-top: 20px;
 }
 
-.Form-Button {
+.Form-Button  {
     font-family: Montserrat-Bold;
     font-size: 15px;
     line-height: 1.5;
@@ -527,4 +527,14 @@ header .Calendar-Nav span:hover {
     .container {
         width: 80%;
     }
+}
+
+.AIdiv {
+    text-align: center;
+    font-size: 15px;
+    margin: 15px;
+    padding: 15px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #427884;
 }
