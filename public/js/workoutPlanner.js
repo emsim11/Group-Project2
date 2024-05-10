@@ -12,13 +12,13 @@ const StartWorkoutBtn = document.getElementById('Start-Workout');
 
 // Workout API Endpoints
 var WorkoutAPIEndpoints = {
-    'Category': 'http://localhost:3001/api/projects/category',
-    'Equipment': 'http://localhost:3001/api/projects/equipment',
-    'Exercise': 'http://localhost:3001/api/projects/exercise',
-    'Muscle': 'http://localhost:3001/api/projects/muscle',
-    'Rep': 'http://localhost:3001/api/projects/rep',
-    'Weight': 'http://localhost:3001/api/projects/weight',
-    'ExerciseCategory': 'http://localhost:3001/api/projects/exercise/:selectedCategory'
+    'Category': 'https://workout-tracker-3b0i.onrender.com/api/projects/category',
+    'Equipment': 'https://workout-tracker-3b0i.onrender.com/api/projects/equipment',
+    'Exercise': 'https://workout-tracker-3b0i.onrender.com/api/projects/exercise',
+    'Muscle': 'https://workout-tracker-3b0i.onrender.com/api/projects/muscle',
+    'Rep': 'https://workout-tracker-3b0i.onrender.com/api/projects/rep',
+    'Weight': 'https://workout-tracker-3b0i.onrender.com/api/projects/weight',
+    'ExerciseCategory': 'https://workout-tracker-3b0i.onrender.com/api/projects/exercise/:selectedCategory'
 }
 
 // Function: Fetch Data From a Specific Endpoint
@@ -100,7 +100,7 @@ const Categories = () => {
 
 const ExerciseCategories = async (category) => {
     const EncodedCategory = encodeURIComponent(category);
-    const ExerciseCategory = `http://localhost:3001/api/projects/exercise/${EncodedCategory}`;
+    const ExerciseCategory = `https://workout-tracker-3b0i.onrender.com/api/projects/exercise/${EncodedCategory}`;
 
     try {
         const ExerciseCategoriesData = await fetch(ExerciseCategory).then(res => res.json());

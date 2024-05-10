@@ -63,7 +63,7 @@ footer p {
     border-radius: 10px;
 }
 
-.Login-Form {
+.Form {
     background: var(--color-white);
     display: flex;
     flex-wrap: wrap;

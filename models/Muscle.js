@@ -8,39 +8,38 @@ Muscle.init({
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    name_alt: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    is_front: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
-    },
     image: {
         type: DataTypes.STRING,
         validate: {
-            isSvgFilePath(value) {
+            isImgFilePath(value) {
                 if (typeof value !== 'string') {
                     throw new Error('File path must be a string');
                 }
-                if (!/\.(svg)$/.test(value)) {
-                    throw new Error('File path must have a .svg extension');
+                if (!/\.(svg)$/.test(value) || !/\.(png)$/.test(value) || !/\.(jpg)$/.test(value)) {
+                    throw new Error('File path must have a .svg, .png, or .jpg extension');
                 }
             }
+        },
+    },
+    muscle_group_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'muscle_group',
+            key: 'id',
         }
-    }
+    },
 }, {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'muscle'
+    modelName: 'muscle',
 });
 
 module.exports = Muscle;

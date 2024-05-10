@@ -8,20 +8,19 @@ Exercise.init({
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true,
     },
     description: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
     },
     image: {
         type: DataTypes.STRING,
-        allowNull: false,
         validate: {
             isSvgFilePath(value) {
                 if (typeof value !== 'string') {
@@ -31,29 +30,29 @@ Exercise.init({
                     throw new Error('File path must have a .svg extension');
                 }
             }
-        }
+        },
     }, 
-    category_name: {
+    category_id: {
         type: DataTypes.INTEGER,
         references: {
             model: 'category',
-            key: 'id'
+            key: 'id',
         }
     },
-    equipment_name: {
+    equipment_id: {
         type: DataTypes.INTEGER,
         references: {
             model: 'equipment',
-            key: 'id'
+            key: 'id',
         }
     },
-    muscle_name: {
+    muscle_id: {
         type: DataTypes.INTEGER,
         references: {
             model: 'muscle',
-            key: 'id'
+            key: 'id',
         }
-    }
+    },
 }, {
     sequelize,
     timestamps: false,
