@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="./assets/images/icons/Fitness-Icon.svg"><img src="./assets/images/icons/Fitness-Icon.svg" alt="Application Logo" width="250"></a>
+<a href="./Assets/Images/icons/Fitness-Icon.svg"><img src="./assets/images/icons/Fitness-Icon.svg" alt="Application Logo" width="250"></a>
 
 # Workout Tracker 2.0
 
