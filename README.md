@@ -125,8 +125,6 @@ Installation Steps and Dependencies
 8. Press 'Begin Workout' button at the bottom of the container.
 9. Monitor your progress by placing your time & number of reps in the box and adjust your workouts accordingly to achieve your fitness goals effectively.
 
-Instructions and Examples for User
-
 ### Visuals
 
 Below is an image of the login page, which is the landing page for users when they visit the website:

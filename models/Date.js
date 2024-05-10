@@ -8,11 +8,11 @@ Date.init({
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     date: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
     },
 },
 {
@@ -20,7 +20,7 @@ Date.init({
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'date'
+    modelName: 'date',
 });
 
 module.exports = Date;

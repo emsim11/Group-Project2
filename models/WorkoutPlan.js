@@ -10,23 +10,20 @@ WorkoutPlan.init({
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
   exercise: {
     type: DataTypes.STRING,
-    allowNull: true
   },
   description: {
     type: DataTypes.STRING,
-    allowNull: true
   },
   image: {
     type: DataTypes.STRING,
-    allowNull: true
   },
   date: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: false,
   },
 },
 {
@@ -34,7 +31,7 @@ WorkoutPlan.init({
   timestamps: false,
   freezeTableName: true,
   underscored: true,
-  modelName: 'workoutPlan'
+  modelName: 'workoutPlan',
 });
 
 module.exports = WorkoutPlan;

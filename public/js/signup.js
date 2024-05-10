@@ -14,7 +14,7 @@ const signupFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            window.location.replace('/login'); //loginpage
+            window.location.replace('/login');
         } else {
             alert(response.statusText);
         }
@@ -22,5 +22,5 @@ const signupFormHandler = async (event) => {
 };
 
 document
-    .querySelector('.Form-Button')
+    .querySelector('.Signup-Form')
     .addEventListener('click', signupFormHandler);
