@@ -34,24 +34,24 @@ Exercise.init({
         }
     }, 
     category_name: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         references: {
             model: 'category',
-            key: 'name'
+            key: 'id'
         }
     },
     equipment_name: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         references: {
             model: 'equipment',
-            key: 'name'
+            key: 'id'
         }
     },
     muscle_name: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         references: {
             model: 'muscle',
-            key: 'name'
+            key: 'id'
         }
     }
 }, {
