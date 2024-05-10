@@ -115,6 +115,18 @@ router.get('/workout', async (req, res) => {
 });
 
 // POST ROUTES - CREATE
+router.post('/category', async (req,res) => {
+  try {
+    const newCategory = await Category.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+    res.status(200).json({ newCategory: newCategory, message: 'New Category Has Been Created!' });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 router.post('/date', async (req, res) => {
   try {
     const newDate = await Date.create({
@@ -122,6 +134,78 @@ router.post('/date', async (req, res) => {
       user_id: req.session.user_id
     });
     res.status(200).json({ newDate: newDate, message: 'New Date Has Been Created!' });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/equipment', async (req, res) => {
+  try {
+    const newEquipment = await Equipment.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+    res.status(200).json({ newEquipment: newEquipment, message: 'New Equipment Has Been Created!' });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/exercise', async (req, res) => {
+  try {
+    const newExercise = await Exercise.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+    res.status(200).json({ newExercise: newExercise, message: 'New Exercise Has Been Created!' });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/muscle', async (req, res) => {
+  try {
+    const newMuscle = await Muscle.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+    res.status(200).json({ newMuscle: newMuscle, message: 'New Muscle Has Been Created!' });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/rep', async (req, res) => {
+  try {
+    const newRep = await Rep.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+    res.status(200).json({ newRep: newRep, message: 'New Rep Has Been Created!' });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/user', async (req, res) => {
+  try {
+    const newUser = await User.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+    res.status(200).json({ newUser: newUser, message: 'New User Has Been Created!' });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.post('/weight', async (req, res) => {
+  try {
+    const newWeight = await Weight.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
+    res.status(200).json({ newWeight: newWeight, message: 'New Weight Has Been Created!' });
   } catch (error) {
     res.status(500).json(error);
   }

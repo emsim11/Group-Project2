@@ -24,7 +24,6 @@ Muscle.init({
     },
     image: {
         type: DataTypes.STRING,
-        allowNull: false,
         validate: {
             isSvgFilePath(value) {
                 if (typeof value !== 'string') {
