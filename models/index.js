@@ -13,27 +13,27 @@ const Weight = require('./Weight');
 const WorkoutPlan = require('./WorkoutPlan');
 
 Category.hasMany(Exercise, {
-    foreignKey: 'unique_category_name'
+    foreignKey: 'category_id'
 });
 
 Exercise.belongsTo(Category, {
-    foreignKey: 'unique_category_name'
+    foreignKey: 'exercise_id'
 });
 
 Equipment.hasMany(Exercise, {
-    foreignKey: 'unique_equipment_name'
+    foreignKey: 'equipment_id'
 });
 
 Exercise.belongsTo(Equipment, {
-    foreignKey: 'unique_equipment_name'
+    foreignKey: 'exercise_id'
 });
 
 Muscle.hasMany(Exercise, {
-    foreignKey: 'unique_muscle_name'
+    foreignKey: 'muscle_id'
 });
 
 Exercise.belongsTo(Muscle, {
-    foreignKey: 'unique_muscle_name'
+    foreignKey: 'exercise_id'
 });
 
 // WorkoutPlan.belongsToMany(Exercise, { through: 'WorkoutPlanExercises' });
